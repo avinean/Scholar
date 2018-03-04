@@ -1,0 +1,105 @@
+body {
+	background-color: #101826;
+	overflow: hidden;
+}
+
+[id^='page'] {
+	min-height: 100vh;
+	position: relative;
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: center;
+	font-family: sans-serif;
+	color: #B5B9BD;
+}
+
+header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	justify-content: space-around;
+	padding: 4vmin;
+	box-sizing: border-box;
+	background: linear-gradient(90deg, #f26c0d, #fa6938);
+}
+
+header a {
+	text-transform: uppercase;
+	color: #101826;	
+}
+
+a {
+	color: #B5B9BD;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.logo-title {
+	display: flex;
+}
+
+.logo {
+	font-weight: bold;
+}
+
+.form {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+}
+
+.form * {
+	margin: 1vmin 0;
+}
+
+.form span,
+.form label{
+	font-size: .8rem;
+}
+
+input {
+	border: none;
+	padding: 1vmin;
+	background-color: #9ea6ae;
+	border-bottom: 1px solid transparent;
+	color: #101826;
+}
+
+input:focus {
+	outline: none;
+	border-bottom: 1px solid #f26c0d;
+}
+
+::-webkit-input-placeholder { color: #1e2d48}
+::-moz-placeholder { color: #1e2d48}
+:-ms-input-placeholder { color: #1e2d48}
+:-moz-placeholder { color: #1e2d48}
+
+.sub {
+	margin: 2vmin 0;
+	padding: 2vmin;
+	background-color: #f26c0d;
+	color: #101826;
+	cursor: pointer;
+}
+
+article {
+	max-width: 400px;
+	text-indent: 4vmin;
+	line-height: 1.3;
+	padding: 4vmin;
+}
+
+article span {
+	display: block;
+	text-align: right;
+	font-size: .75rem;
+}

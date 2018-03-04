@@ -1,0 +1,12 @@
+
+# HTID:4373912: DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES BELOW
+php_value display_errors 1
+# DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES ABOVE HTID:4373912:
+
+RemoveHandler .html .htm
+AddType application/x-httpd-php .php .htm .html .phtml
+#FallbackResource index.php
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . index.php [L]
