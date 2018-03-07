@@ -21,7 +21,9 @@ class Main extends Model {
 
     
     public function registration() {
-        $p = $this->req->get;
+        $p = $this->req->post;
+        print_r($p);
+        exit();
         $query = "
         INSERT INTO `scholar`.`users`
         (`first_name`, `last_name`, `email`, `password`, `role`, `school`)
@@ -33,7 +35,6 @@ class Main extends Model {
           .$this->db->q($p->status)."','"
           .$this->db->q($p->school)."')";
 
-        echo $this->db->query($query)->result;
-        $this->db->lastQueryError();
+        $this->db->query($query)->result;
     }
 }

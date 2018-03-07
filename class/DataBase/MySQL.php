@@ -62,7 +62,7 @@ class MySQL {
         $response = new Response;
         $response->Setrespose($result);
 
-        // $this->close_conn($this->conn);
+        if ($this->lastQueryError()) return $this->lastQueryError();
         return $response;
     }
 
@@ -71,20 +71,19 @@ class MySQL {
     }
 
     public function lastConnErrNum() {
-        return mysqli_connect_errno();
+        echo mysqli_connect_errno();
     }
 
     public function lastConnError() {
-        return mysqli_connect_error();
+        echo mysqli_connect_error();
     }
 
     public function lastQueryErrNum() {
-        return mysqli_errno($this->conn);
+        echo mysqli_errno($this->conn);
     }
 
-    public function 3
-    () {
-        return mysqli_error($this->conn);
+    public function lastQueryError() {
+        echo mysqli_error($this->conn);
     }
 
     public function lastQueryInfo() {
