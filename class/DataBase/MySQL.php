@@ -60,33 +60,17 @@ class MySQL {
         $result = mysqli_query($this->conn, $query.' --');
 
         $response = new Response;
-        $response->Setrespose($result);
-
-        if ($this->lastQueryError()) return $this->lastQueryError();
+        $response->Set('response', $result);
+        $response->Set('conn', $this->conn);
+        
         return $response;
     }
 
-    public function q($str) {
+    public function quote($str) {
+        return "'".mysqli_real_escape_string($this->open_conn(), $str)."'";
+    }
+
+    public function escape($str) {
         return mysqli_real_escape_string($this->open_conn(), $str);
-    }
-
-    public function lastConnErrNum() {
-        echo mysqli_connect_errno();
-    }
-
-    public function lastConnError() {
-        echo mysqli_connect_error();
-    }
-
-    public function lastQueryErrNum() {
-        echo mysqli_errno($this->conn);
-    }
-
-    public function lastQueryError() {
-        echo mysqli_error($this->conn);
-    }
-
-    public function lastQueryInfo() {
-        echo mysqli_info($this->conn);
     }
 }

@@ -18,5 +18,15 @@
         header( $_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
     }
 
-    
+    // $HOST = "localhost";
+    // $USER = "root";
+    // $PASS = "";
+    // $DB = "";
+
+    // $conn = mysqli_connect($HOST, $USER, $PASS, $DB);
+
+    // print_r(mysqli_query($conn, 
+    // "INSERT INTO `scholar`.`users` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `age`, `school`) 
+    // VALUES (NULL, 'qqwerty', 'wqertyuiop;lkjhgf', '', '', '', '', '')"));
+
     

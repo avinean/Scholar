@@ -4,8 +4,8 @@ namespace App\Core;
 
 class Response {
 
-    public function Setrespose($res) {
-        $this->response = $res;
+    public function Set($name, $val) {
+        $this->$name = $val;
     }
 
     public function outRes() {
@@ -13,17 +13,49 @@ class Response {
     }
 
     public function fetchSingleRow() {
-        return mysqli_fetch_assoc($this->response);
+        if ($this->response === true) return true;
+        else return mysqli_fetch_assoc($this->response);
         // first row assoc
     }
 
     public function fetch() {
-        return mysqli_fetch_all($this->response, MYSQLI_ASSOC);
+        if ($this->response === true) return true;
+        else return mysqli_fetch_all($this->response, MYSQLI_ASSOC);
         //assoc array
     }
 
     public function fetchFields() {
-        return mysqli_fetch_fields($this->response);
+        if ($this->response === true) return true;
+        else return mysqli_fetch_fields($this->response);
         //тупо індексний масив
+    }
+
+    public function rowsNum() {
+        if ($this->response === true) return true;
+        else return $this->response->num_rows;
+        //тупо індексний масив
+    }
+
+
+
+
+    public function lastConnErrNum() {
+        echo mysqli_connect_errno();
+    }
+
+    public function lastConnError() {
+        echo mysqli_connect_error();
+    }
+
+    public function lastQueryErrNum() {
+        echo mysqli_errno($this->conn);
+    }
+
+    public function lastQueryError() {
+        echo mysqli_error($this->conn);
+    }
+
+    public function lastQueryInfo() {
+        echo mysqli_info($this->conn);
     }
 }

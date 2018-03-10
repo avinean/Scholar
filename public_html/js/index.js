@@ -1,43 +1,40 @@
 window.addEventListener('load', function() {
-	document.querySelector(".sub").addEventListener('click', function() {
-		// axios.get('/r/main/reg', {
-		// 	params: {
-				// first_name: 'Ben',
-				// last_name: 'Bush',
-				// email: 'bush@mail.com',
-				// password: '1234',
-				// birth_date: '28-07-1991',
-				// status: 'teacher',
-				// school: 'ЗОШ'
-		// 	}
-		// }).then(function (response) {
-		// 	var a = response.data;
-		// 	console.log(a);
+	// document.querySelector(".sub").addEventListener('click', function() {
+		
+	// 	var params = new URLSearchParams();
+	// 	params.append('first_name', 'Ben');
+	// 	params.append('last_name', 'Bush');
+	// 	params.append('email', 'bush@mail.com');
+	// 	params.append('password', '1234');
+	// 	params.append('birth_date', '28-07-1991');
+	// 	params.append('status', 'teacher');
+	// 	params.append('school', 'ЗОШ');
+	// 	axios({
+	// 		method: 'post',
+	// 		url: '/r/main/reg',
+	// 		data: params
+	// 	}).then(function (response) {
+	// 		var a = response.data;
+	// 		console.log(a);
 			
-		// }).catch(function (error) {
-		// 	console.log(error);
-		// });	
-
+	// 	}).catch(function (error) {
+	// 		console.log(error);
+	// 	});	
+	// });
+	document.querySelector(".sub").addEventListener('click', function() {
+		
+		var params = new URLSearchParams();
+		params.append('email', 'bush@mail.com');
+		params.append('password', '1234');
 		axios({
 			method: 'post',
-			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-			url: '/r/main/reg',
-			data: {
-				first_name: 'Ben',
-				last_name: 'Bush',
-				email: 'bush@mail.com',
-				password: '1234',
-				birth_date: '28-07-1991',
-				status: 'teacher',
-				school: 'ЗОШ'
-			}
+			url: '/r/main/auth',
+			data: params
 		}).then(function (response) {
-			var a = response.data;
-			console.log(a);
-			
+			 console.log(response.data);			
 		}).catch(function (error) {
 			console.log(error);
-		});
+		});	
 	});
 });
 

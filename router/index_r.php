@@ -1,11 +1,18 @@
 <?php
 
-$app->map('GET', '/r/main', function() {
-    require_once ROOT.'/app.php';
-});
+use \App\Core\Model;
 
-$app->map('GET', '/r/profile', function() {
-    require_once ROOT.'/app.php';
-});
+function route($app, $arr = ['/']) {
+    foreach ($arr as $key => $val) {
+        $app->map('GET', '/'.$val.'/'.$key, function() {
+            require_once ROOT.'/text.php';
+        });
+        require_once ROOT.'/../router/panel/'.$key.'_r.php';
+    }
+}
 
-require_once ROOT.'/../router/panel/main_r.php';
+route($app, [
+    'main' => 'r',
+    'profile' => 'r',
+    'admin' => 'a'
+]);

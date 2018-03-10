@@ -17,4 +17,8 @@ class Model {
         $this->db = new \App\DataBase\MySQL;
         $this->req = new \App\Core\Request;
     }
+
+    public function json($arr = []) {
+        return json_encode($arr);
+    }
 }
