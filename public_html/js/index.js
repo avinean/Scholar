@@ -11,7 +11,7 @@ window.addEventListener('load', function() {
 	// 	params.append('school', 'ЗОШ');
 	// 	axios({
 	// 		method: 'post',
-	// 		url: '/r/main/reg',
+	// 		url: '/main/reg',
 	// 		data: params
 	// 	}).then(function (response) {
 	// 		var a = response.data;
@@ -21,20 +21,25 @@ window.addEventListener('load', function() {
 	// 		console.log(error);
 	// 	});	
 	// });
-	document.querySelector(".sub").addEventListener('click', function() {
+	// document.querySelector(".sub").addEventListener('click', function() {
 		
-		var params = new URLSearchParams();
-		params.append('email', 'bush@mail.com');
-		params.append('password', '1234');
-		axios({
-			method: 'post',
-			url: '/r/main/auth',
-			data: params
-		}).then(function (response) {
+	// 	var params = new URLSearchParams();
+	// 	params.append('email', 'bush@mail.com');
+	// 	params.append('password', '1234');
+	// 	axios({
+	// 		method: 'post',
+	// 		url: '/main/auth',
+	// 		data: params
+	// 	}).then(function (response) {
+	// 		 console.log(response.data);			
+	// 	}).catch(function (error) {
+	// 		console.log(error);
+	// 	});	
+	// });
+	document.querySelector(".sub").addEventListener('click', function() {
+		axios('/main/user').then(function (response) {
 			 console.log(response.data);			
-		}).catch(function (error) {
-			console.log(error);
-		});	
+		})
 	});
 });
 

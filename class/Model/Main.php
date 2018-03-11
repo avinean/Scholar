@@ -62,14 +62,12 @@ class Main extends Model {
             $rows = $res->fetchSingleRow();
 
             if (empty($num)) {
-                return $this->json([
-                    'status' => 0,
-                    'message' => 'Incorrect password or email'
-                ]);
+                return 0;
             }
             else {
                 setcookie('scholar_hash', $rows['hash'], time()+60*60*24*365, '/');
                 setcookie('scholar_email', $p->email, time()+60*60*24*365, '/');
+                return 1;
             }
         }
     }
