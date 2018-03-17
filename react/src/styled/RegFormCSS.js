@@ -31,29 +31,6 @@ Input = styled.input`
         outline: none;
         border-bottom: 2px solid #f26c0d;
     }
-`,
-
-Button = styled.div`
-  margin: 3vmin 0;
-  padding: 2vmin;
-  background-color: #f26c0d;
-  color: #101826;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: background-color .5s;
-    &:focus {
-        outline: none;
-        background-color: #f2460d;
-    }
-`,
-
-A = styled.a`
-  font-size: 1rem;
-  color: #B5B9BD;
-  text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
 `;
 
-export {RegFormTag, H2, Message, Input, Button, A};
+export {RegFormTag, H2, Message};
