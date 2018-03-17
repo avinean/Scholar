@@ -13,7 +13,7 @@ class Response {
     }
 
     public function fetchSingleRow() {
-        if ($this->response === true) return true;
+        if (gettype($this->response) === 'boolean') return $this->response;
         else return mysqli_fetch_assoc($this->response);
         // first row assoc
     }

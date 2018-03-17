@@ -26,7 +26,7 @@
     // $conn = mysqli_connect($HOST, $USER, $PASS, $DB);
 
     // print_r(mysqli_query($conn, 
-    // "INSERT INTO `scholar`.`users` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `age`, `school`) 
-    // VALUES (NULL, 'qqwerty', 'wqertyuiop;lkjhgf', '', '', '', '', '')"));
+    // "INSERT INTO `scholar`.`sessions_store` (`session_id`, `user_id`, `user_agent`, `user_ip`, `user_secret`) 
+    // VALUES ('qwerty', '1', 'qwert', 'wqert', 'wert')"));
 
     

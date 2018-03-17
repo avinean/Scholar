@@ -11,7 +11,7 @@ class AltoRouter {
             self::$instance = new self();
         }
         return self::$instance;
-    }
+	}
 
 	/**
 	 * @var array Array of all routes (incl. named routes).
