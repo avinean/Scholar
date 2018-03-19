@@ -3,7 +3,6 @@ import axios from 'axios';
 import {RegFormTag, H2, Message, A} from '../styled/RegformCSS.js';
 import Input from '../styled/InputCSS.js';
 import Button from '../styled/ButtonCSS.js';
-import Autradio from '../styled/AutradioCSS.js';
 
 class Autform extends Component {
   constructor(props){
@@ -11,7 +10,6 @@ class Autform extends Component {
     this.state = {
       mail: ``,
       pass: ``,
-      char: `pupil`,
       mess: ``
     }
   }
@@ -19,10 +17,6 @@ class Autform extends Component {
   setVal(e) {
     const t = e.target;
     this.setState({[t.name]: t.value});
-  }
-
-  handleRatio(e) {
-    this.setState({char: e.target.id});
   }
 
   checkVal(e) {
@@ -57,7 +51,7 @@ class Autform extends Component {
           _this.setState({mess: `Обліковий запис не знайдено`});
           _this.clearMess();
         } else {
-            window.location = `${window.location.href}profile`;
+            window.location = `${window.location.origin}profile`;
         }
     })
   }
@@ -75,64 +69,28 @@ class Autform extends Component {
     
         <H2> Авторизація </H2>
         <Message>{this.state.mess}</Message>
-
-        <Input type="text" name="firstName"
-          placeholder="Ім'я"
+       
+        <Input type="email" name="mail"
+          placeholder="Електронна пошта"
           spellCheck="false"
           tabIndex="1"
           onMouseEnter={e => e.target.focus()}
           onChange={e => this.setVal(e)}
           autoFocus
           />
-
-        <Input type="text" name="lastName"
-          placeholder="Прізвище"
-          spellCheck="false"
-          tabIndex="2"
-          onMouseEnter={e => e.target.focus()}
-          onChange={e => this.setVal(e)}
-          />
-       
-        <Input type="email" name="mail"
-          placeholder="Електронна пошта"
-          spellCheck="false"
-          tabIndex="3"
-          onMouseEnter={e => e.target.focus()}
-          onChange={e => this.setVal(e)}
-          />
-
-        <Input type="password" name="pass1"
+        <Input type="password" name="pass"
           placeholder="Пароль"
-          tabIndex="4"
+          tabIndex="2"
           onMouseEnter={e => e.target.focus()}
           onChange={e => this.setVal(e)} 
           />
 
-        <Input type="text" name="school"
-          placeholder="Навчальний заклад"
-          spellCheck="false"
-          tabIndex="5"
-          onMouseEnter={e => e.target.focus()}
-          onChange={e => this.setVal(e)}
-          />
-
-        <Autradio>
-          <label htmlFor="pupil">учень</label>
-          <input type="radio" id="pupil"
-          onChange={e => this.handleRatio(e)}
-          checked={this.state.char == "pupil"} />
-          <label htmlFor="master">учитель</label>
-          <input type="radio" id="master"
-          onChange={e => this.handleRatio(e)} 
-          checked={this.state.char == "master"} />
-	      </Autradio>
-
         <Button 
-          tabIndex="6"
+          tabIndex="3"
           onMouseEnter={e => e.target.focus()}
           onClick = {e => this.checkVal(e)}
           onKeyDown = {e => this.checkVal(e)}> 
-          Створити обліковий запис 
+          Ввійти 
         </Button>
 
       </RegFormTag>

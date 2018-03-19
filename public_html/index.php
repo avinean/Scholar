@@ -28,5 +28,3 @@
     // print_r(mysqli_query($conn, 
     // "INSERT INTO `scholar`.`sessions_store` (`session_id`, `user_id`, `user_agent`, `user_ip`, `user_secret`) 
     // VALUES ('qwerty', '1', 'qwert', 'wqert', 'wert')"));
-
-    

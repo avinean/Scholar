@@ -6,8 +6,8 @@ class Prenav extends Component {
     render() {
       return (
           <Prenavtag>
-            <Styledlink to="/" >Реєстрація</Styledlink>
-            <Styledlink to="/autorize">Авторизація</Styledlink>
+            <Styledlink to="/" >Авторизація</Styledlink>
+            <Styledlink to="/reg">Реєстрація</Styledlink>
             <Styledlink to="/restore">Відновити пароль</Styledlink>
             <Styledlink to="/faq">Про ресурс</Styledlink>
           </Prenavtag>
