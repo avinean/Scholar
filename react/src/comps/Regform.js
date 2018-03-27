@@ -33,13 +33,13 @@ class Regform extends Component {
           boolP = pass.length >= 6;
 
     if (!boolM || !boolP) {
-      const field = !boolM ? 
-              `Некоректна електронна пошта` 
-            : `Пароль занадто короткий`;
+      let field;
+      if (!boolM) field = `Некоректна електронна пошта`;
+      else if (!boolP) field = `Пароль занадто короткий`;
       this.setState({mess: field});
       this.clearMess();
       return;
-    };
+    }
 
     this.sendVal();
   }

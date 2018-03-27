@@ -55,55 +55,94 @@ class Security {
         }
     }
 
-    public function authUser() {
-        $p = $this->req->get;
-        $s = $this->req->server;
-        
-        if ( isset($p->email) && isset($p->password)) {
-            
-            $query = "SELECT `id` FROM `scholar`.`users` 
+	public function authUser() {
+		$p = $this->req->get;
+		$s = $this->req->server;
+
+		if ( isset($p->email) && isset($p->password)) {
+
+			$query = "SELECT `id` FROM `scholar`.`users` 
             WHERE email = ".$this->db->quote($p->email)."
             AND password = ".$this->db->quote($p->password);
 
-            $res = $this->db->query($query);
-            $num = $res->rowsNum();
-            $rows = $res->fetchSingleRow();
+			$res = $this->db->query($query);
+			$num = $res->rowsNum();
+			$rows = $res->fetchSingleRow();
 
-            if (empty($num)) {
-                return 0;
-            }
-            else {
-                
-                session_start();
+			if (empty($num)) {
+				return 0;
+			}
+			else {
 
-                $_SESSION['family'] = 1;
-                $_SESSION['user_id'] = $rows['id'];
-                $_SESSION['user_agent'] = md5($s->HTTP_USER_AGENT);
-                $_SESSION['user_ip'] = md5($s->REMOTE_ADDR);
-                $_SESSION['user_secret'] = md5($p->email.$p->password);
-                $_SESSION['session_id'] = explode('=', SID)[1];
+				$hash = md5(
+					$s->HTTP_USER_AGENT.$s->REMOTE_ADDR.$p->email.$p->password
+				);
 
-                $query = "
-                REPLACE INTO `scholar`.`sessions_store`
-                (`user_id`, `user_agent`, `user_ip`, `user_secret`, `session_id`)
-                VALUES ('"
-                .$rows['id']."','"
-                .md5($s->HTTP_USER_AGENT)."','"
-                .md5($s->REMOTE_ADDR)."','"
-                .md5($p->email.$p->password)."','"
-                .explode('=', SID)[1]."')";
-   
-                setcookie(
-                    'scholar_familia',
-                    'idu='.$_SESSION['user_id'].'&'.SID,
-                    time()+60*60*24*365,
-                    'path=/'
-                );
-            
-                return $this->db->query($query)->response;
-            }
-        }
-    }    
+				setcookie(
+					'scholar_hash',
+					$hash,
+					time()+60*60*24*365,
+					'path=/'
+				);
+				setcookie(
+					'scholar_id',
+					$hash,
+					time()+60*60*24*365,
+					'path=/'
+				);
+			}
+		}
+	}
+
+//    public function authUser() {
+//        $p = $this->req->get;
+//        $s = $this->req->server;
+//
+//        if ( isset($p->email) && isset($p->password)) {
+//
+//            $query = "SELECT `id` FROM `scholar`.`users`
+//            WHERE email = ".$this->db->quote($p->email)."
+//            AND password = ".$this->db->quote($p->password);
+//
+//            $res = $this->db->query($query);
+//            $num = $res->rowsNum();
+//            $rows = $res->fetchSingleRow();
+//
+//            if (empty($num)) {
+//                return 0;
+//            }
+//            else {
+//
+//                session_start();
+//
+//                $_SESSION['family'] = 1;
+//                $_SESSION['user_id'] = $rows['id'];
+//                $_SESSION['user_agent'] = md5($s->HTTP_USER_AGENT);
+//                $_SESSION['user_ip'] = md5($s->REMOTE_ADDR);
+//                $_SESSION['user_secret'] = md5($p->email.$p->password);
+//                $_SESSION['session_id'] = explode('=', SID)[1];
+//
+//                $query = "
+//                REPLACE INTO `scholar`.`sessions_store`
+//                (`user_id`, `user_agent`, `user_ip`, `user_secret`, `session_id`)
+//                VALUES ('"
+//                .$rows['id']."','"
+//                .md5($s->HTTP_USER_AGENT)."','"
+//                .md5($s->REMOTE_ADDR)."','"
+//                .md5($p->email.$p->password)."','"
+//                .explode('=', SID)[1]."')";
+//
+//                setcookie(
+//                    'scholar_familia',
+//                    'idu='.$_SESSION['user_id'].'&'.SID,
+//                    time()+60*60*24*365,
+//                    'path=/'
+//                );
+//
+//                return $this->db->query($query)->response;
+//            }
+//        }
+//    }
 
     public function checkAuth() {
         if (isset($this->req->cookie->scholar_familia)) {
