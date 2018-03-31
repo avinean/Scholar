@@ -56,7 +56,7 @@ class Security {
     }
 
     public function authUser() {
-        $p = $this->req->get;
+        $p = $this->req->post;
         $s = $this->req->server;
         
         if ( isset($p->email) && isset($p->password)) {
@@ -72,22 +72,10 @@ class Security {
             if (empty($num)) {
                 return 0;
             }
-            else {
-                
-                setcookie(
-                    'scholar_id',
-                    $rows['id'],
-                    time()+60*60*24*365,
-                    'path=/'
-                );
-   
-                setcookie(
-                    'scholar_hash',
-                    md5($rows['id'].$p->email.$p->password.$s->HTTP_USER_AGENT),
-                    time()+60*60*24*365,
-                    'path=/'
-                );
-            
+            else {                
+                setcookie('scholar_id', $rows['id'], time()+60*60*24*365, 'path=/');   
+                setcookie('scholar_hash', md5($rows['id'].$p->email.$p->password.$s->HTTP_USER_AGENT),
+                    time()+60*60*24*365, 'path=/');            
                 return 1;
             }
         }

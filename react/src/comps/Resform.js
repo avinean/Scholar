@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {RegFormTag, H2, Message, Input, Button, A} from 
-        '../styled/RegformCSS.js';
+        '../styled/RegFormCSS.js';
 
 class Resform extends Component {
   constructor(props){

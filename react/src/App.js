@@ -16,8 +16,8 @@ class App extends Component {
         <Wrapper>
             <Header />  
                 
-            <Route exact path="/" component={Regform} />
-            <Route path="/autorize" component={Autform} />
+            <Route exact path="/" component={Autform} />
+            <Route path="/reg" component={Regform} />
             <Route path="/restore" component={Resform} />
             <Route path="/faq" component={Faqform} />
             
