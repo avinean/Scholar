@@ -23,4 +23,5 @@ route($app, [
     'faq',
     'restore',
     'reg',
+    'former'
 ]);
