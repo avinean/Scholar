@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {RegFormTag, H2, Message, A} from '../styled/RegformCSS.js';
+import {RegFormTag, H2, Message, A} from '../styled/RegFormCSS.js';
 import Input from '../styled/InputCSS.js';
 import Button from '../styled/ButtonCSS.js';
 import Autradio from '../styled/AutradioCSS.js';
@@ -51,7 +51,7 @@ class Regform extends Component {
             password: this.state.pass
           };
 
-    axios.post(`/reg/reg`, info)
+    axios.post(`/reg`, info)
       .then(res => {
         if (res.data === 0) {
           _this.setState({mess: `Обліковий запис не знайдено`});

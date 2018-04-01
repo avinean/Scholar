@@ -4,7 +4,7 @@ namespace App\Model;
 
 use \App\Core\Security;
 
-$app->map('POST', '/reg/reg', function() {
+$app->map('POST', '/reg', function() {
     print_r( Security::c()->regNewUser() );
 });
 

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {RegFormTag, H2, Message, A} from '../styled/RegformCSS.js';
+import {RegFormTag, H2, Message, A} from '../styled/RegFormCSS.js';
 import Input from '../styled/InputCSS.js';
 import Button from '../styled/ButtonCSS.js';
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 class Autform extends Component {
   constructor(props){
@@ -11,7 +12,7 @@ class Autform extends Component {
       mail: ``,
       pass: ``,
       mess: ``
-    }
+    };
   }
   
   setVal(e) {
@@ -40,18 +41,17 @@ class Autform extends Component {
 
   sendVal() {
     const _this = this,
-          info = {
-            mail: this.state.mail,
-            password: this.state.pass
-          };
+      info = new URLSearchParams();
+      info.append('email', this.state.mail);
+      info.append('password', this.state.pass);
 
-    axios.post(`/main/reg`, info)
+    axios.post(`/auth`, info)
       .then(res => {
         if (res.data === 0) {
           _this.setState({mess: `Обліковий запис не знайдено`});
           _this.clearMess();
         } else {
-            window.location = `${window.location.origin}profile`;
+          window.location = `profile`;
         }
     })
   }

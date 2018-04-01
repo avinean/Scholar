@@ -55,121 +55,50 @@ class Security {
         }
     }
 
-	public function authUser() {
-		$p = $this->req->get;
-		$s = $this->req->server;
-
-		if ( isset($p->email) && isset($p->password)) {
-
-			$query = "SELECT `id` FROM `scholar`.`users` 
+    public function authUser() {
+        $p = $this->req->post;
+        $s = $this->req->server;
+        
+        if ( isset($p->email) && isset($p->password)) {
+            
+            $query = "SELECT `id` FROM `scholar`.`users` 
             WHERE email = ".$this->db->quote($p->email)."
             AND password = ".$this->db->quote($p->password);
 
-			$res = $this->db->query($query);
-			$num = $res->rowsNum();
-			$rows = $res->fetchSingleRow();
+            $res = $this->db->query($query);
+            $num = $res->rowsNum();
+            $rows = $res->fetchSingleRow();
 
-			if (empty($num)) {
-				return 0;
-			}
-			else {
-
-				$hash = md5(
-					$s->HTTP_USER_AGENT.$s->REMOTE_ADDR.$p->email.$p->password
-				);
-
-				setcookie(
-					'scholar_hash',
-					$hash,
-					time()+60*60*24*365,
-					'path=/'
-				);
-				setcookie(
-					'scholar_id',
-					$hash,
-					time()+60*60*24*365,
-					'path=/'
-				);
-			}
-		}
-	}
-
-//    public function authUser() {
-//        $p = $this->req->get;
-//        $s = $this->req->server;
-//
-//        if ( isset($p->email) && isset($p->password)) {
-//
-//            $query = "SELECT `id` FROM `scholar`.`users`
-//            WHERE email = ".$this->db->quote($p->email)."
-//            AND password = ".$this->db->quote($p->password);
-//
-//            $res = $this->db->query($query);
-//            $num = $res->rowsNum();
-//            $rows = $res->fetchSingleRow();
-//
-//            if (empty($num)) {
-//                return 0;
-//            }
-//            else {
-//
-//                session_start();
-//
-//                $_SESSION['family'] = 1;
-//                $_SESSION['user_id'] = $rows['id'];
-//                $_SESSION['user_agent'] = md5($s->HTTP_USER_AGENT);
-//                $_SESSION['user_ip'] = md5($s->REMOTE_ADDR);
-//                $_SESSION['user_secret'] = md5($p->email.$p->password);
-//                $_SESSION['session_id'] = explode('=', SID)[1];
-//
-//                $query = "
-//                REPLACE INTO `scholar`.`sessions_store`
-//                (`user_id`, `user_agent`, `user_ip`, `user_secret`, `session_id`)
-//                VALUES ('"
-//                .$rows['id']."','"
-//                .md5($s->HTTP_USER_AGENT)."','"
-//                .md5($s->REMOTE_ADDR)."','"
-//                .md5($p->email.$p->password)."','"
-//                .explode('=', SID)[1]."')";
-//
-//                setcookie(
-//                    'scholar_familia',
-//                    'idu='.$_SESSION['user_id'].'&'.SID,
-//                    time()+60*60*24*365,
-//                    'path=/'
-//                );
-//
-//                return $this->db->query($query)->response;
-//            }
-//        }
-//    }
+            if (empty($num)) {
+                return 0;
+            }
+            else {                
+                setcookie('scholar_id', $rows['id'], time()+60*60*24*365, 'path=/');   
+                setcookie('scholar_hash', md5($rows['id'].$p->email.$p->password.$s->HTTP_USER_AGENT),
+                    time()+60*60*24*365, 'path=/');            
+                return 1;
+            }
+        }
+    }    
 
     public function checkAuth() {
-        if (isset($this->req->cookie->scholar_familia)) {
-            $cookie = $this->req->cookie->scholar_familia;
-            $user_id = explode('&', $cookie)[0];
-            $session_id = explode('&', $cookie)[1];
+        if (isset($this->req->cookie->scholar_id) && isset($this->req->cookie->scholar_hash)) {
 
-            $user_id = explode('=', $user_id)[1];
-            $session_id = explode('=', $session_id)[1];
-
+            $s = $this->req->server;
+            $id = $this->req->cookie->scholar_id;       
+            
             $query = "
-            SELECT * FROM `scholar`.`sessions_store`
-            WHERE user_id = ".$this->db->quote($user_id)." AND
-            session_id = ".$this->db->quote($session_id).
-            "LIMIT 1";
+            SELECT password, email FROM `scholar`.`users`
+            WHERE id = ".$this->db->quote($id)."LIMIT 1";
 
             $res = $this->db->query($query)->fetchSingleRow();
-            
-            session_id($session_id);
-            session_start();
 
-            $_SESSION['family'] = 1;
-            $_SESSION['user_id'] = $res['user_id'];
-            $_SESSION['user_agent'] = $res['user_agent'];
-            $_SESSION['user_ip'] = $res['user_ip'];
-            $_SESSION['user_secret'] = $res['user_secret'];
-            $_SESSION['session_id'] = $res['session_id'];
+            $true_hash = md5($id.$res['email'].$res['password'].$s->HTTP_USER_AGENT);
+            $hash = $this->req->cookie->scholar_hash;
+
+            if ($true_hash !== $hash) {
+                header('Location: /');
+            }            
         }
         else {
             header('Location: /');
@@ -177,8 +106,24 @@ class Security {
     }
 
     public function checkCookie() {
-        if (isset($this->req->cookie->scholar_familia)) {
-            header('Location: /profile');
+        if (isset($this->req->cookie->scholar_id) && isset($this->req->cookie->scholar_hash)) {
+            header('Location: /profile');          
         }
+    }
+
+    public function logOut() {
+        setcookie(
+            'scholar_id',
+            '',
+            time()-1,
+            'path=/'
+        );
+
+        setcookie(
+            'scholar_hash',
+            '',
+            time()-1,
+            'path=/'
+        );
     }
 }
