@@ -174,6 +174,21 @@ class FromCreator extends Component {
 				<br />
 				<br />
 				<Box
+					onChange={this.check}
+					value={this.state.checked}
+					type="checkbox"
+					editable="1"
+				/>
+				<Box
+					onChange={this.radio}
+					value={this.state.radioChecked}
+					type="radiobox"
+					editable="1"
+				/>
+				<br />
+				<br />
+				<br />
+				<Box
 					onChange={this.trig}
 					value={this.state.trigged}
 					type="trigger"

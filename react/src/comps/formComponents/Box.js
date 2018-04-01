@@ -54,8 +54,8 @@ class Box extends Component {
 
 				box = <div className="check-box-wrapper">
 					<div onClick={this.check} className="check-box">
-						{this.props.value &&
-						<i className="zmdi zmdi-check check-box-access"></i>}
+						{this.state.value &&
+						<span><i className="fas fa-check check-box-access"></i></span>}
 					</div>
 					<input type="text" className="check box-title-input" />
 				</div>;
@@ -65,8 +65,8 @@ class Box extends Component {
 
 				box = <div className="check-box-wrapper">
 					<div onClick={this.check} className="radio-box">
-						{this.props.value &&
-						<i className="zmdi zmdi-circle radio-box-access"></i>}
+						{this.state.value &&
+						<span><i className="fas fa-circle radio-box-access"></i></span>}
 					</div>
 					<div contentEditable="true" ref="input" className="check box-title-input" onKeyPress={this.onInput}>{this.props.title}</div>
 					{this.props.onDelete && <button onClick={() => this.props.onDelete(this.props.form)}>X</button>}
