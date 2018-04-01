@@ -3,10 +3,11 @@ import React, { Component } from 'react';
 class Box extends Component {
     
     constructor(props) {
-        super(props);
+		super(props);
+	
         this.state = {
         	value: this.props.value,
-        	title: this.props.title,
+			title: this.props.title,
 			sizes: {
 				big: {
 					wrap: 'big wrap',
@@ -19,19 +20,51 @@ class Box extends Component {
 					off: 'small-trig trig trig-off'
 				}
 			}
-        };
+		};
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (this.props.prevent) {
+			this.setState({value: nextProps.value});
+		}
 	}
 	
 	check = e => {
 		Promise.resolve().then(() => {
-			this.setState({value: !this.state.value})
+			this.setState({value: !this.state.value});
 		}).then(() => {
 			this.props.onChange({
 				state: this.state,
 				props: this.props
 			});
 		});
+	};
+
+	input = e => {
+		let title = this.refs.input.value;
+		Promise.resolve().then(() => {
+			this.setState({title: title})
+		}).then(() => {
+			this.props.onChange({
+				state: this.state,
+				props: this.props
+			});
+		});
+	};
+
+	delete = e => {
+		this.props.onDelete({
+			state: this.state,
+			props: this.props
+		});
 	}
+
+	enter = (e) => {
+		let key = e.nativeEvent.keyCode;
+		if (this.props.onEnter && key === 13) {
+			this.props.onEnter();
+		}
+	};
 
     render() {
 		let title = '';
@@ -57,7 +90,18 @@ class Box extends Component {
 						{this.state.value &&
 						<span><i className="fas fa-check check-box-access"></i></span>}
 					</div>
-					<input type="text" className="check box-title-input" />
+					<input 
+						ref="input" 
+						type="text" 
+						className="check box-title-input" 
+						onChange={this.input} 
+						onKeyPress={this.enter}
+						defaultValue={this.state.title}
+					/>
+					{this.props.onDelete && 
+					<span onClick={this.delete}>
+						<i className="fas fa-trash-alt"></i>
+					</span>}
 				</div>;
 
 			}
@@ -65,11 +109,21 @@ class Box extends Component {
 
 				box = <div className="check-box-wrapper">
 					<div onClick={this.check} className="radio-box">
-						{this.state.value &&
+						{this.state.value && 
 						<span><i className="fas fa-circle radio-box-access"></i></span>}
 					</div>
-					<div contentEditable="true" ref="input" className="check box-title-input" onKeyPress={this.onInput}>{this.props.title}</div>
-					{this.props.onDelete && <button onClick={() => this.props.onDelete(this.props.form)}>X</button>}
+					<input 
+						ref="input" 
+						type="text" 
+						className="check box-title-input" 
+						onChange={this.input}
+						onKeyPress={this.enter}
+						defaultValue={this.state.title}
+					/>
+					{this.props.onDelete && 
+					<span onClick={this.delete}>
+						<i className="fas fa-trash-alt"></i>
+					</span>}
 				</div>;
 
 			}

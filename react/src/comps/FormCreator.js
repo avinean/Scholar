@@ -44,8 +44,8 @@ class FromCreator extends Component {
 					answer: "Aimzibesovzibes",
 				}
 			],
-			dataRadio: [{}],
-			dataCheck: [{}],
+			eradio: [{}],
+			echeck: [{}],
 			fakeFormValuesRadio: {
 				id: '1232qweqwe',
 				text: 'This is a question?',
@@ -85,10 +85,12 @@ class FromCreator extends Component {
 				]
 			},
 			dataFormRadio: {
+				id: '1232qweqwe',
 				text: '',
 				data: [{}]
 			},
 			dataFormCheck: {
+				id: '1232qweqwe',
 				text: '',
 				data: [{}]
 			},
@@ -107,13 +109,14 @@ class FromCreator extends Component {
 		this.setState({radioChecked: !this.state.radio});
 	}
 
+	callback = e => {
+		console.log(e.data);		
+	}
 
 	render() {
 		return(
 			<div className='wrapper'>
-				<h1><a href="https://github.com/avinean/avinean.github.io/tree/master/proj/trigger">git hub</a></h1>
-				<br />
-				{/* <br />
+				{/*<br />
 				<h1>Ready forms</h1>
 				<TestForm
 					callback={this.callback}
@@ -126,7 +129,7 @@ class FromCreator extends Component {
 					data={this.state.fakeFormValuesCheck}
 					type="check"
 					title="Check form testing"
-				/>
+				/>*/}
 				<TestForm
 					callback={this.callback}
 					data={this.state.dataFormRadio}
@@ -140,7 +143,7 @@ class FromCreator extends Component {
 					type="check"
 					editable={1}
 					title="Check creating form testing"
-				/>
+				/>{/*}
 				<br />
 				<br />
 				<br />
@@ -155,32 +158,33 @@ class FromCreator extends Component {
 					callback={this.callback}
 					data={this.state.fakeValuesCheck}
 					type="check"
-				/>
-				<h1>Editable radiobox group</h1>
+				/><h1>Editable radiobox group</h1>
 				<CheckboxGroup
 					callback={this.callback}
-					data={this.state.dataRadio}
+					data={this.state.eradio}
 					type="radio"
 					editable={1}
 				/>
 				<h1>Editable checkbox group</h1>
 				<CheckboxGroup
 					callback={this.callback}
-					data={this.state.dataCheck}
+					data={this.state.echeck}
 					type="check"
 					editable={1}
-				/> */}
+				/>
 				<br />
 				<br />
 				<br />
 				<Box
-					onChange={this.check}
+					onChange={this.callback}
+					onDelete={1}
 					value={this.state.checked}
 					type="checkbox"
 					editable="1"
 				/>
 				<Box
-					onChange={this.radio}
+					onChange={this.callback}
+					onDelete={1}
 					value={this.state.radioChecked}
 					type="radiobox"
 					editable="1"
@@ -206,7 +210,7 @@ class FromCreator extends Component {
 					value={this.state.radioChecked}
 					type="radiobox"
 					on="OK" off="Chpok"
-				/>
+				/> */}
 			</div>
 		);
 	}

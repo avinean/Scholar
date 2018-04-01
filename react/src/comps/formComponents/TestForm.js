@@ -3,25 +3,35 @@ import CheckboxGroup from './CheckboxGroup.js'
 
 class TestForm extends Component {
 
-	onInput = (e) => {
-		this.props.data.text = e.target.innerText || '';
+	constructor(props) {
+		super(props);
+		this.state = {data: this.props.data};
+	}
+
+	onInput = e => {
+		// this.props.data.text = e.target.innerText || '';
 	};
 
+	callback = e => {
+		console.log(this.state.data)
+		console.log(e);
+	}
+
 	render() {
-		const p = this.props;
-		let m = p.type;
-		let title = p.title && <p className="test-form-title">{p.title}</p>;
-		let text = p.data.text && <p className="test-form-text">{p.data.text}</p>;
-		let textarea = <div contenteditable="true" className="check box-title-area" onKeyPress={this.onInput}>{p.data.text}</div>
+		let title = this.props.title && <p className="test-form-title">{this.props.title}</p>;
+		let text = this.props.data.text && <p className="test-form-text">{this.props.data.text}</p>;
+		let textarea = <textarea ref="area" className="check box-title-area" onInput={this.onInput} defaultValue={this.state.data.text}></textarea>
 		let form = this.props.editable ?
 			<CheckboxGroup
-				data={p.data.data}
-				type={p.type}
+				callback={this.callback}
+				data={this.state.data.data}
+				type={this.props.type}
 				editable={1}
 			/>:
 			<CheckboxGroup
-				data={p.data.data}
-				type={p.type}
+				callback={this.callback}
+				data={this.state.data.data}
+				type={this.props.type}
 			/>;
 
 		return(
