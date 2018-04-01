@@ -80,7 +80,7 @@ class Box extends Component {
 				box = <div className="check-box-wrapper">
 					<div onClick={this.check} className="check-box">
 						{this.state.value &&
-						<i className="zmdi zmdi-check check-box-access"></i>}
+						<span><i className="fas fa-check check-box-access"></i></span>}
 					</div>
 					{title}
 				</div>;
@@ -91,7 +91,7 @@ class Box extends Component {
 				box = <div className="check-box-wrapper">
 					<div onClick={this.check} className="radio-box">
 						{this.state.value &&
-						<i className="zmdi zmdi-circle radio-box-access"></i>}
+						<span><i className="fas fa-circle radio-box-access"></i></span>}
 					</div>
 					{title}
 				</div>;
