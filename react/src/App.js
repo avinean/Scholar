@@ -6,6 +6,7 @@ import Regform from './comps/Regform.js';
 import Autform from './comps/Autform.js';
 import Resform from './comps/Resform.js';
 import Faqform from './comps/Faqform.js';
+import FormCreator from './comps/FormCreator.js';
 import Prenav from './comps/Prenav.js';
 import Wrapper from './styled/WrapperCSS.js';
 
@@ -20,6 +21,7 @@ class App extends Component {
             <Route path="/reg" component={Regform} />
             <Route path="/restore" component={Resform} />
             <Route path="/faq" component={Faqform} />
+            <Route path="/former" component={FormCreator} />
             
             <Prenav />
         </Wrapper>
