@@ -4,6 +4,7 @@ import CheckboxGroup from './formComponents/CheckboxGroup.js';
 import TestForm from './formComponents/TestForm.js';
 
 
+
 class FromCreator extends Component {
 	constructor() {
 		super();
@@ -110,13 +111,13 @@ class FromCreator extends Component {
 	}
 
 	callback = e => {
-		console.log(e.data);		
+		console.log(e);		
 	}
 
 	render() {
 		return(
 			<div className='wrapper'>
-				{/*<br />
+				<br />
 				<h1>Ready forms</h1>
 				<TestForm
 					callback={this.callback}
@@ -129,7 +130,7 @@ class FromCreator extends Component {
 					data={this.state.fakeFormValuesCheck}
 					type="check"
 					title="Check form testing"
-				/>*/}
+				/>
 				<TestForm
 					callback={this.callback}
 					data={this.state.dataFormRadio}
@@ -143,7 +144,7 @@ class FromCreator extends Component {
 					type="check"
 					editable={1}
 					title="Check creating form testing"
-				/>{/*}
+				/>
 				<br />
 				<br />
 				<br />
@@ -210,7 +211,7 @@ class FromCreator extends Component {
 					value={this.state.radioChecked}
 					type="radiobox"
 					on="OK" off="Chpok"
-				/> */}
+				/>
 			</div>
 		);
 	}

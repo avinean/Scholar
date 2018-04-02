@@ -17,7 +17,7 @@ class Faqform extends Component {
     return (
       <RegFormTag>
     
-        <H2> FAQ </H2>
+        <H2> Profile </H2>
 
       </RegFormTag>
     );
