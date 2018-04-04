@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Box from './formComponents/Box';
 import CheckboxGroup from './formComponents/CheckboxGroup.js';
 import TestForm from './formComponents/TestForm.js';
@@ -9,212 +10,240 @@ class FromCreator extends Component {
 	constructor() {
 		super();
 		this.state = {
-			trigged: true,
-			checked: true,
-			radioChecked: true,
-			fakeValuesRadio: [
-				{
-					id: 1,
-					answer: "London is a capital of Ukraine",
-				},{
-					id: 2,
-					answer: "I am not me",
-				},{
-					id: 3,
-					answer: "Right answer",
-				},{
-					id: 4,
-					answer: "Duck",
-				}
-			],
-			fakeValuesCheck: [
-				{
-					id: 1,
-					answer: "London is a capital of Ukraine",
-				},{
-					id: 2,
-					answer: "I am not me",
-				},{
-					id: 3,
-					answer: "Right answer",
-				},{
-					id: 4,
-					answer: "Duck",
-				},{
-					id: 5,
-					answer: "Aimzibesovzibes",
-				}
-			],
-			eradio: [{}],
-			echeck: [{}],
-			fakeFormValuesRadio: {
-				id: '1232qweqwe',
-				text: 'This is a question?',
-				data: [
-					{
-						id: 1,
-						answer: "London is a capital of Ukraine",
-					}, {
-						id: 2,
-						answer: "I am not me",
-					}, {
-						id: 3,
-						answer: "Right answer",
-					}, {
-						id: 4,
-						answer: "Duck",
-					}
-				]
-			},
-			fakeFormValuesCheck: {
-				id: '1232qweqwe',
-				text: 'Is multiselect working?',
-				data: [
-					{
-						id: 1,
-						answer: "London is a capital of Ukraine",
-					}, {
-						id: 2,
-						answer: "I am not me",
-					}, {
-						id: 3,
-						answer: "Right answer",
-					}, {
-						id: 4,
-						answer: "Duck",
-					}
-				]
-			},
-			dataFormRadio: {
-				id: '1232qweqwe',
+			a1: {
+				id: 'a1',
 				text: '',
 				data: [{}]
 			},
-			dataFormCheck: {
-				id: '1232qweqwe',
+			a2: {
+				id: 'a2',
 				text: '',
 				data: [{}]
 			},
-		}
-	}
-
-	trig = e => {
-		this.setState({trigged: !this.state.trigged});
-	}
-
-	check = e => {
-		this.setState({checked: !this.state.checked});
-	}
-
-	radio = e => {
-		this.setState({radioChecked: !this.state.radio});
+			a3: {
+				id: 'a3',
+				text: '',
+				data: [{}]
+			},
+			a4: {
+				id: 'a4',
+				text: '',
+				data: [{}]
+			},
+		};
+		this.test = {};
 	}
 
 	callback = e => {
-		console.log(e);		
+		this.test[e.id] =  e;
+	}
+
+	sendForm = e => {	
+		let data = JSON.stringify(this.test);
+		let info = new URLSearchParams();
+		info.append('data', data);
+
+		axios.post('/former/set_form', info)
+		.then(res => {
+			console.log(res);
+		});
 	}
 
 	render() {
+	
+
 		return(
 			<div className='wrapper'>
 				<br />
 				<h1>Ready forms</h1>
 				<TestForm
 					callback={this.callback}
-					data={this.state.fakeFormValuesRadio}
+					data={this.state.a1}
 					type="radio"
-					title="Radio form testing"
+					editable={1}
 				/>
 				<TestForm
 					callback={this.callback}
-					data={this.state.fakeFormValuesCheck}
+					data={this.state.a2}
 					type="check"
-					title="Check form testing"
+					editable={1}
 				/>
 				<TestForm
 					callback={this.callback}
-					data={this.state.dataFormRadio}
+					data={this.state.a3}
 					type="radio"
 					editable={1}
-					title="Radio creating form testing"
 				/>
 				<TestForm
 					callback={this.callback}
-					data={this.state.dataFormCheck}
-					type="check"
-					editable={1}
-					title="Check creating form testing"
-				/>
-				<br />
-				<br />
-				<br />
-				<h1>Radiobox group</h1>
-				<CheckboxGroup
-					callback={this.callback}
-					data={this.state.fakeValuesRadio}
-					type="radio"
-				/>
-				<h1>Checkbox group</h1>
-				<CheckboxGroup
-					callback={this.callback}
-					data={this.state.fakeValuesCheck}
-					type="check"
-				/><h1>Editable radiobox group</h1>
-				<CheckboxGroup
-					callback={this.callback}
-					data={this.state.eradio}
-					type="radio"
-					editable={1}
-				/>
-				<h1>Editable checkbox group</h1>
-				<CheckboxGroup
-					callback={this.callback}
-					data={this.state.echeck}
+					data={this.state.a4}
 					type="check"
 					editable={1}
 				/>
 				<br />
-				<br />
-				<br />
-				<Box
-					onChange={this.callback}
-					onDelete={1}
-					value={this.state.checked}
-					type="checkbox"
-					editable="1"
-				/>
-				<Box
-					onChange={this.callback}
-					onDelete={1}
-					value={this.state.radioChecked}
-					type="radiobox"
-					editable="1"
-				/>
-				<br />
-				<br />
-				<br />
-				<Box
-					onChange={this.trig}
-					value={this.state.trigged}
-					type="trigger"
-					size="small"
-					on="OK" off="Chpok"
-				/>
-				<Box
-					onChange={this.check}
-					value={this.state.checked}
-					type="checkbox"
-					on="OK" off="Chpok"
-				/>
-				<Box
-					onChange={this.radio}
-					value={this.state.radioChecked}
-					type="radiobox"
-					on="OK" off="Chpok"
-				/>
+				<button onClick={this.sendForm}>Send form</button>
 			</div>
 		);
 	}
 }
 
 export default FromCreator;
+
+
+// class FromCreator extends Component {
+// 	constructor() {
+// 		super();
+// 		this.state = {
+// 			trigged: true,
+// 			checked: true,
+// 			radioChecked: true,
+// 			fakeValuesRadio: [
+// 				{
+// 					id: 1,
+// 					answer: "London is a capital of Ukraine",
+// 				},{
+// 					id: 2,
+// 					answer: "I am not me",
+// 				},{
+// 					id: 3,
+// 					answer: "Right answer",
+// 				},{
+// 					id: 4,
+// 					answer: "Duck",
+// 				}
+// 			],
+// 			fakeValuesCheck: [
+// 				{
+// 					id: 1,
+// 					answer: "London is a capital of Ukraine",
+// 				},{
+// 					id: 2,
+// 					answer: "I am not me",
+// 				},{
+// 					id: 3,
+// 					answer: "Right answer",
+// 				},{
+// 					id: 4,
+// 					answer: "Duck",
+// 				},{
+// 					id: 5,
+// 					answer: "Aimzibesovzibes",
+// 				}
+// 			],
+// 			eradio: [{}],
+// 			echeck: [{}],
+// 			fakeFormValuesRadio: {
+// 				id: '1232qweqwe',
+// 				text: 'This is a question?',
+// 				data: [
+// 					{
+// 						id: 1,
+// 						title: "London is a capital of Ukraine",
+// 					}, {
+// 						id: 2,
+// 						title: "I am not me",
+// 						value: true
+// 					}, {
+// 						id: 3,
+// 						title: "Right answer",
+// 					}, {
+// 						id: 4,
+// 						title: "Duck",
+// 					}
+// 				]
+// 			},
+// 			fakeFormValuesCheck: {
+// 				id: '1232qweqwe',
+// 				text: 'Is multiselect working?',
+// 				data: [
+// 					{
+// 						id: 1,
+// 						title: "London is a capital of Ukraine",
+// 						value: true
+// 					}, {
+// 						id: 2,
+// 						title: "I am not me",
+// 					}, {
+// 						id: 3,
+// 						title: "Right answer",
+// 					}, {
+// 						id: 4,
+// 						title: "Duck",
+// 					}
+// 				]
+// 			},
+// 			dataFormRadio: {
+// 				id: '1232qweqwe',
+// 				text: '',
+// 				data: [{}]
+// 			},
+// 			dataFormCheck: {
+// 				id: '1232qweqwe',
+// 				text: '',
+// 				data: [{}]
+// 			},
+// 		}
+// 	}
+
+// 	trig = e => {
+// 		this.setState({trigged: !this.state.trigged});
+// 	}
+
+// 	check = e => {
+// 		this.setState({checked: !this.state.checked});
+// 	}
+
+// 	radio = e => {
+// 		this.setState({radioChecked: !this.state.radio});
+// 	}
+
+// 	callback = e => {
+// 		this.form = e;		
+// 	}
+
+// 	send = e => {
+// 		let info = new URLSearchParams();
+// 		info.append('info', this.form);
+  
+// 		axios.post('/former/setForm', info)
+// 		.then((e) => {
+			
+// 		});
+// 	};
+
+// 	render() {
+// 		return(
+// 			<div className='wrapper'>
+// 				<br />
+// 				<h1>Ready forms</h1>
+// 				{/* <TestForm
+// 					callback={this.callback}
+// 					data={this.state.fakeFormValuesRadio}
+// 					type="radio"
+// 					title="Radio form testing"
+// 				/>
+// 				<TestForm
+// 					callback={this.callback}
+// 					data={this.state.fakeFormValuesCheck}
+// 					type="check"
+// 					title="Check form testing"
+// 				/> */}
+// 				<TestForm
+// 					callback={this.callback}
+// 					data={this.state.fakeFormValuesRadio}
+// 					type="radio"
+// 					editable={1}
+// 					title="Radio creating form testing"
+// 				/>
+// 				{/* <TestForm
+// 					callback={this.callback}
+// 					data={this.state.fakeFormValuesCheck}
+// 					type="check"
+// 					editable={1}
+// 					title="Check creating form testing"
+// 				/> */}
+// 				<button onClick={this.send}>SEND FORM</button>
+// 			</div>
+// 		);
+// 	}
+// }

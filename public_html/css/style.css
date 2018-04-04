@@ -141,6 +141,7 @@
     padding: 10px;
     font-style: italic;
     word-wrap: break-word;
+    user-select: text;
 }
 
 .add-button {
