@@ -19,9 +19,7 @@ class CheckboxGroup extends Component {
 
 		let temp = [...this.state.data];
 		
-		Promise.resolve().then(() => {
-			this.setState({checkedId: e.props.id});
-		}).then(() => {
+		this.setState({checkedId: e.props.id}, () => {
 			temp.forEach(el => {
 				if (this.props.type === 'radio') {
 					el.value = e.props.id === el.id ? true : null;
@@ -29,15 +27,15 @@ class CheckboxGroup extends Component {
 				if (this.props.type === 'check' && e.props.id === el.id) {
 					el.value =  e.state.value;
 				}
-			});
-		}).then(() => {
-			this.setState({data: temp});
-		}).then(() => {
-			this.props.callback && this.props.callback({
+			})
+		});
+
+		this.setState({data: temp},
+			this.props.callback({
 				props: this.props,
 				state: this.state
-			});
-		});
+			})
+		);
 	};
 
 	changeVal = e => {

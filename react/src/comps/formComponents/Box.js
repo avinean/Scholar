@@ -30,26 +30,21 @@ class Box extends Component {
 	}
 	
 	check = e => {
-		Promise.resolve().then(() => {
-			this.setState({value: !this.state.value});
-		}).then(() => {
+		this.setState({value: !this.state.value},
 			this.props.onChange({
 				state: this.state,
 				props: this.props
-			});
-		});
+			})
+		);
 	};
 
 	input = e => {
-		let title = this.refs.input.value;
-		Promise.resolve().then(() => {
-			this.setState({title: title})
-		}).then(() => {
+		this.setState({title: this.refs.input.value},
 			this.props.onChange({
 				state: this.state,
 				props: this.props
-			});
-		});
+			})
+		);
 	};
 
 	delete = e => {
@@ -57,7 +52,7 @@ class Box extends Component {
 			state: this.state,
 			props: this.props
 		});
-	}
+	};
 
 	enter = (e) => {
 		let key = e.nativeEvent.keyCode;
