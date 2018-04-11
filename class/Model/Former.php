@@ -14,12 +14,6 @@ class Former extends Model {
         return self::$instance;
     }
 
-    public function getReadyTest() {
-        $res = $this->db->query('SELECT * FROM scholar.tests')->fetchSingleRow();
-        $res = json_encode($res);        
-        return $res;
-    }
-
     public function setTest() {
         $data = $this->req->post->data;
         $id = $this->req->cookie->scholar_id;
