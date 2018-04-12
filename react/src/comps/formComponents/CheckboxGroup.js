@@ -5,12 +5,12 @@ class CheckboxGroup extends Component {
 
 	constructor(props) {
 		super(props);
-		if (!this.props.data[0].id) {
-			this.props.data[0] = {id: Math.random(0, 1) * Math.random(0, 1)};
+		if (!props.data[0].id) {
+			props.data[0] = {id: Math.random(0, 1) * Math.random(0, 1)};
 		}
 		this.state = {
 			checkedId: null,
-			data: this.props.data
+			data: props.data
 		};
 		this.inputs = [];
 	}
@@ -135,7 +135,7 @@ class CheckboxGroup extends Component {
 						key={e.id}
 						onChange={this.setVal}
 						type="radiobox"
-						title={e.answer}
+						title={e.title}
 						id={e.id}
 						value={e.value}
 						prevent={1}
@@ -145,7 +145,7 @@ class CheckboxGroup extends Component {
 						key={e.id}
 						onChange={this.setVal}
 						type="checkbox"
-						title={e.answer}
+						title={e.title}
 						id={e.id}
 					/> : ''
 			);

@@ -6,8 +6,8 @@ class TestForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			data: this.props.data,
-			text: this.props.data.text
+			data: props.data,
+			text: props.data.text
 		};
 	}
 
@@ -18,8 +18,10 @@ class TestForm extends Component {
 		})
 		.then(() => {
 			this.props.callback && this.props.callback({
-				state: this.state,
-				id: this.props.data.id
+				data: this.state,
+				id: this.props.data.id,
+				type: this.props.type,
+				title: this.props.title
 			});
 		});
 	};
@@ -36,8 +38,10 @@ class TestForm extends Component {
 		})
 		.then(() => {
 			this.props.callback && this.props.callback({
-				state: this.state,
-				id: this.props.data.id
+				data: this.state,
+				id: this.props.data.id,
+				type: this.props.type,
+				title: this.props.title
 			});
 		});
 	}

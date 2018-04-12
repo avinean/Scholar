@@ -4,10 +4,10 @@ class Box extends Component {
     
     constructor(props) {
 		super(props);
-	
+		
         this.state = {
-        	value: this.props.value,
-			title: this.props.title,
+        	value: props.value,
+			title: props.title ? props.title : props.form.title,
 			sizes: {
 				big: {
 					wrap: 'big wrap',
@@ -31,16 +31,16 @@ class Box extends Component {
 	
 	check = e => {
 		this.setState({value: !this.state.value},
-			this.props.onChange({
+			() =>this.props.onChange({
 				state: this.state,
 				props: this.props
 			})
-		);
+		)
 	};
 
 	input = e => {
 		this.setState({title: this.refs.input.value},
-			this.props.onChange({
+			() => this.props.onChange({
 				state: this.state,
 				props: this.props
 			})
