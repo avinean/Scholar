@@ -34,7 +34,7 @@ class Autform extends Component {
       this.setState({mess: field});
       this.clearMess();
       return;
-    };
+    }
 
     this.sendVal();
   }

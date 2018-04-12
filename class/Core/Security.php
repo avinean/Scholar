@@ -58,10 +58,10 @@ class Security {
     public function authUser() {
         $p = $this->req->post;
         $s = $this->req->server;
-        
+
         if ( isset($p->email) && isset($p->password)) {
             
-            $query = "SELECT `id` FROM `scholar`.`users` 
+            $query = "SELECT `id` FROM `id3784881_scholar`.`users` 
             WHERE email = ".$this->db->quote($p->email)."
             AND password = ".$this->db->quote($p->password);
 
@@ -88,7 +88,7 @@ class Security {
             $id = $this->req->cookie->scholar_id;       
             
             $query = "
-            SELECT password, email FROM `scholar`.`users`
+            SELECT password, email FROM `id3784881_scholar`.`users`
             WHERE id = ".$this->db->quote($id)."LIMIT 1";
 
             $res = $this->db->query($query)->fetchSingleRow();
@@ -98,7 +98,7 @@ class Security {
 
             if ($true_hash !== $hash) {
                 header('Location: /');
-            }            
+            }
         }
         else {
             header('Location: /');
@@ -107,8 +107,22 @@ class Security {
 
     public function checkCookie() {
         if (isset($this->req->cookie->scholar_id) && isset($this->req->cookie->scholar_hash)) {
-            header('Location: /profile');          
-        }
+			$s = $this->req->server;
+			$id = $this->req->cookie->scholar_id;
+
+			$query = "
+            SELECT password, email FROM `id3784881_scholar`.`users`
+            WHERE id = ".$this->db->quote($id)."LIMIT 1";
+
+			$res = $this->db->query($query)->fetchSingleRow();
+
+			$true_hash = md5($id.$res['email'].$res['password'].$s->HTTP_USER_AGENT);
+			$hash = $this->req->cookie->scholar_hash;
+
+			if ($true_hash === $hash) {
+				header('Location: /profile');
+			}
+		}
     }
 
     public function logOut() {
