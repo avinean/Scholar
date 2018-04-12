@@ -23,5 +23,6 @@ route($app, [
     'faq',
     'restore',
     'reg',
-    'former'
+    'former',
+    'viewer'
 ]);
