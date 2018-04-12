@@ -18,7 +18,7 @@ class Former extends Model {
         $data = $this->req->post->data;
         $id = $this->req->cookie->scholar_id;
         $query = "
-            INSERT INTO scholar.tests (`data_form`, `id_auth`) 
+            INSERT INTO tests (`data_form`, `id_auth`) 
             VALUES (".$this->db->quote($data).", ".intval($id).")
             ";
         $res = $this->db->query($query);  

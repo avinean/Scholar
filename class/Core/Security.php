@@ -26,7 +26,7 @@ class Security {
     public function regNewUser() {
         $p = $this->req->post;
 
-        $query = "SELECT * FROM `scholar`.`users` 
+        $query = "SELECT * FROM users
         WHERE email = ".$this->db->quote($p->email);
 
         $rows = $this->db->query($query)->rowsNum();
@@ -39,7 +39,7 @@ class Security {
         }
         else {
             $query = "
-            INSERT INTO `scholar`.`users`
+            INSERT INTO users
             (`first_name`, `last_name`, `email`, `password`, `role`, `school`)
             VALUES ("
             .$this->db->quote($p->first_name).","
@@ -61,7 +61,7 @@ class Security {
 
         if ( isset($p->email) && isset($p->password)) {
             
-            $query = "SELECT `id` FROM `id3784881_scholar`.`users` 
+            $query = "SELECT `id` FROM `users` 
             WHERE email = ".$this->db->quote($p->email)."
             AND password = ".$this->db->quote($p->password);
 
@@ -88,7 +88,7 @@ class Security {
             $id = $this->req->cookie->scholar_id;       
             
             $query = "
-            SELECT password, email FROM `id3784881_scholar`.`users`
+            SELECT password, email FROM `users`
             WHERE id = ".$this->db->quote($id)."LIMIT 1";
 
             $res = $this->db->query($query)->fetchSingleRow();
@@ -111,7 +111,7 @@ class Security {
 			$id = $this->req->cookie->scholar_id;
 
 			$query = "
-            SELECT password, email FROM `id3784881_scholar`.`users`
+            SELECT password, email FROM `users`
             WHERE id = ".$this->db->quote($id)."LIMIT 1";
 
 			$res = $this->db->query($query)->fetchSingleRow();

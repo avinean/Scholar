@@ -1,53 +1,31 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Box from './formComponents/Box';
-import CheckboxGroup from './formComponents/CheckboxGroup.js';
 import TestForm from './formComponents/TestForm.js';
-
-
 
 class FromCreator extends Component {
 	constructor() {
 		super();
 		this.state = {
 			form: [
-				{
-					id: 'a1',
-					text: '',
-					data: [{}],
-					type: 'radio'
-				},{
-					id: 'a2',
-					text: '',
-					data: [{}],
-					type: 'radio'
-				},{
-					id: 'a3',
-					text: '',
-					data: [{}],
-					type: 'check'
-				},{
-					id: 'a4',
-					text: '',
-					data: [{}],
-					type: 'check'
-				}
+				{id:'a1',text:'',data:[{}],type:'radio'},
+				{id:'a2',text:'',data:[{}],type:'radio'},
+				{id:'a3',text:'',data:[{}],type:'check'},
+				{id:'a4',text:'',data:[{}],type:'check'}
 			]
 		};
 		this.test = [];
 	}
 
 	callback = e => {
-		let tempid = 1	;
-		this.test.forEach((el,i) => {
-			if (el.id === e.id) {
-				tempid = i;
-			}
-		});
-		if (tempid) this.test[tempid] = e;
-		else this.test.push(e);
-		console.log(this.test)
-	}
+		if (!this.test.length) this.test.push(e);
+		else {
+			let tempid = null;
+			this.test.forEach((el, i) => {
+				if (el.id === e.id) tempid = i;
+			});
+			tempid !== null ? this.test[tempid] = e : this.test.push(e);
+		}
+	};
 
 	sendForm = e => {	
 		let data = JSON.stringify(this.test);
@@ -58,7 +36,7 @@ class FromCreator extends Component {
 		.then(res => {
 			console.log(res);
 		});
-	}
+	};
 
 	render() {
 		let form = this.state.form

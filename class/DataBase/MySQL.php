@@ -16,16 +16,16 @@ class MySQL {
         return self::$instance;
     }
 
-    public function getMySQL($user) {
+    public function getMySQL($db) {
 
-        switch ($user) {
-            case 'avinean':
+        switch ($db) {
+            case 'id3784881_scholar':
             $HOST = "localhost";
-            $USER = "id3784881_avinean";
-            $PASS = "Coba1953";
-            $DB = "";
+            $USER = "root";
+            $PASS = "";
+            $DB = "id3784881_scholar";
             break;
-            case 'root':
+            case 'scholar':
             $HOST = "localhost";
             $USER = "root";
             $PASS = "";
@@ -46,7 +46,7 @@ class MySQL {
     }
     
     private function open_conn() {
-        $i = $this->getMySQL('root');
+        $i = $this->getMySQL('id3784881_scholar');
         return mysqli_connect( $i['h'], $i['u'], $i['p'], $i['d']); 
     }
 
@@ -62,7 +62,9 @@ class MySQL {
         $response = new Response;
         $response->Set('response', $result);
         $response->Set('conn', $this->conn);
-        
+		if ($response->conn->errno || $response->conn->connect_errno) {
+			print_r($response->conn);
+		}
         return $response;
     }
 
