@@ -4,8 +4,9 @@
 }
 
 .wrapper {
-    width: 30%;
+    width: 60%;
     margin: 0 auto;
+    padding: 10px 30px;
     background-color: #fff;
 }
 

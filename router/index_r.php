@@ -8,13 +8,11 @@ function route($app, $arr = []) {
         Security::c()->checkCookie();
         require_once ROOT.'/app.php';
     });
-    require_once ROOT.'/../router/security_r.php';
     foreach ($arr as $val) {
         $app->map('GET', '/'.$val, function() {
             Security::c()->checkAuth();
             require_once ROOT.'/app.php';
         });
-        require_once ROOT.'/../router/panel/'.$val.'_r.php';
     }
 }
 
@@ -24,5 +22,10 @@ route($app, [
     'restore',
     'reg',
     'former',
-    'viewer'
+    'viewer',
+    'poll/[i:id]'
 ]);
+
+require_once ROOT.'/../router/security_r.php';
+require_once ROOT.'/../router/panel/former_r.php';
+require_once ROOT.'/../router/panel/viewer_r.php';

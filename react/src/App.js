@@ -26,6 +26,7 @@ class App extends Component {
             <Route path="/profile" component={Profile} />
             <Route path="/former" component={FormCreator} />
             <Route path="/viewer" component={FormViewer} />
+            <Route path="/poll/:id" component={FormViewer} />
             
             <Prenav />
         </Wrapper>

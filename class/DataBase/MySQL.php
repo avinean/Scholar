@@ -29,7 +29,7 @@ class MySQL {
             $HOST = "localhost";
             $USER = "root";
             $PASS = "";
-            $DB = "";
+            $DB = "scholar";
             break;
             default:
             break;
@@ -46,7 +46,7 @@ class MySQL {
     }
     
     private function open_conn() {
-        $i = $this->getMySQL('id3784881_scholar');
+        $i = $this->getMySQL('scholar');
         return mysqli_connect( $i['h'], $i['u'], $i['p'], $i['d']); 
     }
 

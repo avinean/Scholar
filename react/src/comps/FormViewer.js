@@ -16,6 +16,8 @@ class FormViewer extends Component {
 		axios('/viewer/get_form')
 		.then((res) => {
 			let arr = JSON.parse(res.data.data_form);
+			arr.forEach(e => e.data.data
+				.forEach(i => i.value = false));
 			this.setState(arr);
 		});
 	}
@@ -37,26 +39,34 @@ class FormViewer extends Component {
 
 	render() {
 		let form = [];
-		for (let k in this.state) {
-			console.log(k)
-			form.push( 
-				<TestForm
-				callback={this.callback}
-				data={this.state[k]}
-				type={this.state[k].type}
-			/>);
-		}	
-		console.log(form);
+		if (!this.state) {
+			return(
+				<div className='wrapper'>
+					<h1>No poll</h1>
+				</div>
+			); 
+		}
+		else {
+			for (let k in this.state) {
+				form.push( 
+					<TestForm
+					key={Math.random(0,1)**Math.random(0,1)}
+					callback={this.callback}
+					data={this.state[k].data}
+					type={this.state[k].type}
+				/>);
+			}
 
-		return(
-			<div className='wrapper'>
-				<br />
-				<h1>Ready forms</h1>
-				{/* {...form} */}
-				<br />
-				<button onClick={this.sendForm}>Send form</button>
-			</div>
-		);
+			return(
+				<div className='wrapper'>
+					<br />
+					<h1>Ready forms</h1>
+					{form.length ? form : ''}
+					<br />
+					<button onClick={this.sendForm}>Send form</button>
+				</div>
+			);
+		}
 	}
 }
 

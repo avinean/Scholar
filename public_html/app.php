@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/style.css">
-    <script src="./libs/fontawesome-free-5.0.9/svg-with-js/js/fontawesome-all.js"></script>
     <title>scholar</title>
 </head>
 <body>
@@ -16,6 +15,7 @@
     <!-- хуйомойо -->
     </noscript>
     <div id="app"></div>
+    <script src="../libs/fontawesome-free-5.0.9/svg-with-js/js/fontawesome-all.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

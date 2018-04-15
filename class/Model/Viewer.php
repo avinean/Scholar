@@ -15,8 +15,8 @@ class Viewer extends Model {
     }
 
     public function getReadyTest() {
-        $res = $this->db->query('SELECT * FROM tests WHERE id=15')->fetchSingleRow();
-        $res = json_encode($res);        
-        return $res;
+        $test_id = intval(basename($this->req->server->HTTP_REFERER));
+        $res = $this->db->query('SELECT * FROM tests WHERE id='.$test_id)->fetchSingleRow();
+        return json_encode($res);
     }
 }
