@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Box from './formComponents/Box';
-import CheckboxGroup from './formComponents/CheckboxGroup.js';
 import TestForm from './formComponents/TestForm.js';
+import Button from '../styled/ButtonCSS.js';
 
 
 
-class FormViewer extends Component {
+class PollViewer extends Component {
 	constructor() {
 		super();
 		this.test = {};
@@ -24,7 +23,7 @@ class FormViewer extends Component {
 
 	callback = e => {
 		this.test[e.id] =  e;
-	}
+	};
 
 	sendForm = e => {	
 		let data = JSON.stringify(this.test);
@@ -35,7 +34,7 @@ class FormViewer extends Component {
 		.then(res => {
 			// console.log(JSON.parse(res.data.data_form));
 		});
-	}
+	};
 
 	render() {
 		let form = [];
@@ -58,16 +57,16 @@ class FormViewer extends Component {
 			}
 
 			return(
-				<div className='wrapper'>
+				<Button>
 					<br />
 					<h1>Ready forms</h1>
 					{form.length ? form : ''}
 					<br />
 					<button onClick={this.sendForm}>Send form</button>
-				</div>
+				</Button>
 			);
 		}
 	}
 }
 
-export default FormViewer;
+export default PollViewer;

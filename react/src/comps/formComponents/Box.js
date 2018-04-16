@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Wrapper, CheckBox, RadioBox, CI, RI} from '../../styled/formComponents/BoxCSS.js';
 
 class Box extends Component {
     
@@ -64,13 +65,13 @@ class Box extends Component {
     render() {
 		let title = '';
 		if (this.props.title) {
-			title = <div className="check box-title">{this.props.title}</div>;
+			title = <div>{this.props.title}</div>;
 		}
 		if (this.props.on && this.state.value) {
-			title = <div className="check box-title">{this.props.on}</div>;
+			title = <div>{this.props.on}</div>;
 		}
 		if (this.props.off && !this.state.value) {
-			title = <div className="check box-title">{this.props.off}</div>;
+			title = <div>{this.props.off}</div>;
 		}
 
 		const size = (this.props.size in this.state.sizes) ? this.props.size : 'big';
@@ -80,75 +81,73 @@ class Box extends Component {
 		if (this.props.editable) {
 			if (this.props.type === 'checkbox') {
 
-				box = <div className="check-box-wrapper">
-					<div onClick={this.check} className="check-box">
+				box = <Wrapper>
+					<CheckBox onClick={this.check}>
 						{this.state.value &&
-						<span><i className="fas fa-check check-box-access"></i></span>}
-					</div>
-					<input 
-						ref="input" 
-						type="text" 
-						className="check box-title-input" 
-						onChange={this.input} 
-						onKeyPress={this.enter}
-						defaultValue={this.state.title}
-					/>
-					{this.props.onDelete && 
-					<span onClick={this.delete}>
-						<i className="fas fa-trash-alt"></i>
-					</span>}
-				</div>;
-
-			}
-			if (this.props.type === 'radiobox') {
-
-				box = <div className="check-box-wrapper">
-					<div onClick={this.check} className="radio-box">
-						{this.state.value && 
-						<span><i className="fas fa-circle radio-box-access"></i></span>}
-					</div>
-					<input 
-						ref="input" 
-						type="text" 
-						className="check box-title-input" 
+						<span><CI className="fas fa-check"></CI></span>}
+					</CheckBox>
+					<input
+						ref="input"
+						type="text"
 						onChange={this.input}
 						onKeyPress={this.enter}
 						defaultValue={this.state.title}
 					/>
-					{this.props.onDelete && 
+					{this.props.onDelete &&
 					<span onClick={this.delete}>
 						<i className="fas fa-trash-alt"></i>
 					</span>}
-				</div>;
+				</Wrapper>;
+
+			}
+			if (this.props.type === 'radiobox') {
+
+				box = <Wrapper>
+					<RadioBox onClick={this.check}>
+						{this.state.value &&
+						<span><RI className="fas fa-circle"></RI></span>}
+					</RadioBox>
+					<input
+						ref="input"
+						type="text"
+						onChange={this.input}
+						onKeyPress={this.enter}
+						defaultValue={this.state.title}
+					/>
+					{this.props.onDelete &&
+					<span onClick={this.delete}>
+						<i className="fas fa-trash-alt"></i>
+					</span>}
+				</Wrapper>;
 
 			}
 		}
 		else {
 			if (this.props.type === 'checkbox') {
 
-				box = <div className="check-box-wrapper">
-					<div onClick={this.check} className="check-box">
+				box = <Wrapper>
+					<CheckBox onClick={this.check}>
 						{this.state.value &&
-						<span><i className="fas fa-check check-box-access"></i></span>}
-					</div>
+						<span><CI className="fas fa-check"></CI></span>}
+					</CheckBox>
 					{title}
-				</div>;
+				</Wrapper>;
 
 			}
 			if (this.props.type === 'radiobox') {
 
-				box = <div className="check-box-wrapper">
-					<div onClick={this.check} className="radio-box">
+				box = <Wrapper>
+					<RadioBox onClick={this.check}>
 						{this.state.value &&
-						<span><i className="fas fa-circle radio-box-access"></i></span>}
-					</div>
+						<span><RI className="fas fa-circle"></RI></span>}
+					</RadioBox>
 					{title}
-				</div>;
+				</Wrapper>;
 
 			}
 			if (this.props.type === 'trigger') {
 
-				box = <div className="check-box-wrapper">
+				box = <Wrapper>
 					<div onClick={this.check} className={this.state.sizes[size].wrap}>
 						<div className={this.state.value ?
 							this.state.sizes[size].on :
@@ -156,13 +155,13 @@ class Box extends Component {
 						>{this.state.value ? 'ON' : 'OFF'}</div>
 					</div>
 					{title}
-				</div>;
+				</Wrapper>;
 
 			}
 		}
 
 		return box;
     }
-};
+}
 
 export default Box;

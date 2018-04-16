@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import CheckboxGroup from './CheckboxGroup.js'
+import CheckboxGroup from './CheckboxGroup.js';
+import {TestWrap, Title, Text, Area} from '../../styled/formComponents/TestFormCSS';
 
 class TestForm extends Component {
 
@@ -44,12 +45,12 @@ class TestForm extends Component {
 				title: this.props.title
 			});
 		});
-	}
+	};
 
 	render() {
-		let title = this.props.title && <p className="test-form-title">{this.props.title}</p>;
-		let text = this.props.data.text && <p className="test-form-text">{this.props.data.text}</p>;
-		let textarea = <textarea ref="area" className="check box-title-area" onInput={this.onInput} defaultValue={this.state.text}></textarea>
+		let title = this.props.title && <Title>{this.props.title}</Title>;
+		let text = this.props.data.text && <Text>{this.props.data.text}</Text>;
+		let textarea = <Area ref="area" onInput={this.onInput} defaultValue={this.state.text}></Area>;
 		let form = this.props.editable ?
 			<CheckboxGroup
 				callback={this.callback}
@@ -64,12 +65,11 @@ class TestForm extends Component {
 			/>;
 
 		return(
-
-			<div className="test-form-wrap">
+			<TestWrap>
 				{title}
 				{this.props.editable ? textarea : text}
 				{form}
-			</div>
+			</TestWrap>
 		);
 	}
 }

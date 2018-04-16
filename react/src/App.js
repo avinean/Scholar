@@ -7,7 +7,8 @@ import Autform from './comps/Autform.js';
 import Resform from './comps/Resform.js';
 import Faqform from './comps/Faqform.js';
 import FormCreator from './comps/FormCreator.js';
-import FormViewer from './comps/FormViewer.js';
+import PollViewer from './comps/PollViewer.js';
+import TestListViewer from './comps/TestListViewer.js';
 import Prenav from './comps/Prenav.js';
 import Profile from './comps/Prenav.js';
 import Wrapper from './styled/WrapperCSS.js';
@@ -25,8 +26,8 @@ class App extends Component {
             <Route path="/faq" component={Faqform} />
             <Route path="/profile" component={Profile} />
             <Route path="/former" component={FormCreator} />
-            <Route path="/viewer" component={FormViewer} />
-            <Route path="/poll/:id" component={FormViewer} />
+            <Route path="/viewer" component={TestListViewer} />
+            <Route path="/poll/:id" component={PollViewer} />
             
             <Prenav />
         </Wrapper>

@@ -34,7 +34,7 @@ class FromCreator extends Component {
 
 		axios.post('/former/set_form', info)
 		.then(res => {
-			console.log(res);
+			this.setState({testId: res.data});
 		});
 	};
 
@@ -50,7 +50,9 @@ class FromCreator extends Component {
 			/>
 		);
 		return(
-			<div className='wrapper'>
+			this.state.testId ?
+			<div>Link to your test <a href={location.origin + '/poll/' + this.state.testId}>{this.state.testId}</a></div> :
+			<div>
 				<br />
 				<h1>Ready forms</h1>
 				{form}
