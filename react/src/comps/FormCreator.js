@@ -9,13 +9,26 @@ class FromCreator extends Component {
 		this.state = {
 			form: [
 				{id:'a1',text:'',data:[{}],type:'radio'},
-				{id:'a2',text:'',data:[{}],type:'radio'},
-				{id:'a3',text:'',data:[{}],type:'check'},
-				{id:'a4',text:'',data:[{}],type:'check'}
 			]
 		};
 		this.test = [];
 	}
+
+	addFormField = e => {
+		let a = [...this.state.form];
+		a.push({id:Math.random(),text:'',data:[{}],type:e});
+		this.setState({form: a});
+	};
+
+	deleteFormField = e => {
+		let a = [...this.state.form].filter(el => el.id !== e);
+		if (!a.length) {
+			a.push({id:Math.random(),text:'',data:[{}],type:e});
+		}
+		else {
+			this.setState({form: a});
+		}
+	};
 
 	callback = e => {
 		if (!this.test.length) this.test.push(e);
@@ -48,6 +61,7 @@ class FromCreator extends Component {
 				data={e} 
 				type={e.type}
 				editable={1} 
+				onDelete={this.deleteFormField}
 			/>
 		);
 		return(
@@ -58,6 +72,8 @@ class FromCreator extends Component {
 				<h1>Ready forms</h1>
 				{form}
 				<br />
+				<Button onClick={e => this.addFormField('check')}>Add new checkbox form</Button>
+				<Button onClick={e => this.addFormField('radio')}>Add new radiobox form</Button>
 				<Button onClick={this.sendForm}>Send form</Button>
 			</div>
 		);

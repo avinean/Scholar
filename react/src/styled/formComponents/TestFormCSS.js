@@ -14,6 +14,13 @@ Text = styled.p`
 `,
 
 Area = styled.div`
+    position: relative;
+
+    span {
+        position: absolute;
+        left: -25px;
+    }
+
     textarea {
         display: block;
         width: 100%;

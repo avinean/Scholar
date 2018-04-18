@@ -52,6 +52,10 @@ class TestForm extends Component {
 		let text = this.props.data.text && <Text>{this.props.data.text}</Text>;
 		let textarea = 
 					<Area>
+						{this.props.onDelete && 
+						<span onClick={e => this.props.onDelete(this.props.data.id)}>
+							<i className="fas fa-ban"></i>
+						</span>}
 						<textarea 
 						ref="area" 
 						onInput={this.onInput} 
