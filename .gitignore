@@ -9,6 +9,9 @@
 # production
 /build
 
+#db config
+/class/DataBase/MySQL.php
+
 # misc
 .DS_Store
 .env.local

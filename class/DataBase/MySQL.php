@@ -3,6 +3,7 @@
 namespace App\DataBase;
 
 use App\Core\Response;
+use App\Core\Request;
 
 class MySQL {
 
@@ -16,21 +17,21 @@ class MySQL {
         return self::$instance;
     }
 
-    public function getMySQL($db) {
+	public function getMySQL($db) {
 
         switch ($db) {
-            case 'id3784881_scholar':
+            case 'local':
             $HOST = "localhost";
             $USER = "root";
             $PASS = "";
             $DB = "id3784881_scholar";
             break;
-            case 'scholar':
-            $HOST = "localhost";
-            $USER = "root";
-            $PASS = "";
-            $DB = "scholar";
-            break;
+			case 'prod':
+			$HOST = "localhost";
+			$USER = "id3784881_avinean";
+			$PASS = "Coba1953";
+			$DB = "id3784881_scholar";
+			break;
             default:
             break;
         }
@@ -46,7 +47,7 @@ class MySQL {
     }
     
     private function open_conn() {
-        $i = $this->getMySQL('scholar');
+        $i = $this->getMySQL('local');
         return mysqli_connect( $i['h'], $i['u'], $i['p'], $i['d']); 
     }
 

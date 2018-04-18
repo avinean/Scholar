@@ -21,7 +21,7 @@ class Former extends Model {
             INSERT INTO tests (`data_form`, `id_auth`) 
             VALUES (".$this->db->quote($data).", ".intval($id).")
             ";
-        $res = $this->db->query($query);  
+        $res = $this->db->query($query)->ID();
         return $res;
     }
 }
