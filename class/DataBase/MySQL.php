@@ -47,7 +47,7 @@ class MySQL {
     }
     
     private function open_conn() {
-        $i = $this->getMySQL('prod');
+        $i = $this->getMySQL('local');
         return mysqli_connect( $i['h'], $i['u'], $i['p'], $i['d']); 
     }
 
