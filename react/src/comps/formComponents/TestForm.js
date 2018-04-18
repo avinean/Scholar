@@ -12,7 +12,7 @@ class TestForm extends Component {
 		};
 	}
 
-	onInput = e => {
+	onInput = e => {		
 		Promise.resolve()
 		.then(() => {
 			this.setState({text: this.refs.area.value});
@@ -50,7 +50,14 @@ class TestForm extends Component {
 	render() {
 		let title = this.props.title && <Title>{this.props.title}</Title>;
 		let text = this.props.data.text && <Text>{this.props.data.text}</Text>;
-		let textarea = <Area ref="area" onInput={this.onInput} defaultValue={this.state.text}></Area>;
+		let textarea = 
+					<Area>
+						<textarea 
+						ref="area" 
+						onInput={this.onInput} 
+						defaultValue={this.state.text}
+						></textarea>
+					</Area>;
 		let form = this.props.editable ?
 			<CheckboxGroup
 				callback={this.callback}

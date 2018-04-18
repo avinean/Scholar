@@ -13,15 +13,17 @@ Text = styled.p`
     background: linear-gradient(0.25turn,#babae2, #fff);
 `,
 
-Area = styled.textarea`
-    display: block;
-    width: 100%;
-    min-height: 100px;
-    box-shadow: 0 0 5px 0 #58606b;
-    padding: 10px;
-    font-style: italic;
-    word-wrap: break-word;
-    user-select: text;
+Area = styled.div`
+    textarea {
+        display: block;
+        width: 100%;
+        min-height: 100px;
+        box-shadow: 0 0 5px 0 #58606b;
+        padding: 10px;
+        font-style: italic;
+        word-wrap: break-word;
+        user-select: text;
+    }
 `;
 
 export {TestWrap, Title, Text, Area};

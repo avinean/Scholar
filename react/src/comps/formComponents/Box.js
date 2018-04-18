@@ -5,10 +5,9 @@ class Box extends Component {
     
     constructor(props) {
 		super(props);
-		
         this.state = {
         	value: props.value,
-			title: props.title ? props.title : props.form.title,
+			title: props.title ? props.title : props.form ? props.form.title : '',
 			sizes: {
 				big: {
 					wrap: 'big wrap',

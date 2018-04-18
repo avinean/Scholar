@@ -46,7 +46,7 @@ class PollViewer extends Component {
 			); 
 		}
 		else {
-			for (let k in this.state) {
+			for (let k in this.state) {				
 				form.push( 
 					<TestForm
 					key={Math.random(0,1)**Math.random(0,1)}
@@ -57,13 +57,13 @@ class PollViewer extends Component {
 			}
 
 			return(
-				<Button>
+				<div>
 					<br />
 					<h1>Ready forms</h1>
 					{form.length ? form : ''}
 					<br />
-					<button onClick={this.sendForm}>Send form</button>
-				</Button>
+					<Button onClick={this.sendForm}>Send form</Button>
+				</div>
 			);
 		}
 	}

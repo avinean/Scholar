@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import TestForm from './formComponents/TestForm.js';
+import Button from '../styled/ButtonCSS.js';
 
 class FromCreator extends Component {
 	constructor() {
@@ -57,7 +58,7 @@ class FromCreator extends Component {
 				<h1>Ready forms</h1>
 				{form}
 				<br />
-				<button onClick={this.sendForm}>Send form</button>
+				<Button onClick={this.sendForm}>Send form</Button>
 			</div>
 		);
 	}
