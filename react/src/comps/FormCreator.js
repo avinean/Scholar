@@ -64,8 +64,6 @@ class FromCreator extends Component {
 	};
 
 	render() {
-		console.log(this.test);
-		console.log(this.state.form);
 		let form = this.state.form
 		.map(e => 
 			<TestForm 

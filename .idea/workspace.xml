@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="255bd45c-3faa-4c29-a0db-673b5d34265a" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/react/src/styled/SpinnerCSS.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/public_html/js/main.js" afterPath="$PROJECT_DIR$/public_html/js/main.js" />
       <change beforePath="$PROJECT_DIR$/react/src/comps/FormCreator.js" afterPath="$PROJECT_DIR$/react/src/comps/FormCreator.js" />
@@ -22,8 +23,8 @@
       <file leaf-file-name="FormCreator.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/react/src/comps/FormCreator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="30" column="36" lean-forward="false" selection-start-line="30" selection-start-column="36" selection-end-line="30" selection-end-column="36" />
+            <state relative-caret-position="284">
+              <caret line="65" column="14" lean-forward="false" selection-start-line="65" selection-start-column="14" selection-end-line="65" selection-end-column="14" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -85,13 +86,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PollViewer.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PollViewer.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/react/src/comps/PollViewer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="46" column="4" lean-forward="false" selection-start-line="46" selection-start-column="4" selection-end-line="76" selection-end-column="9" />
+            <state relative-caret-position="590">
+              <caret line="40" column="22" lean-forward="false" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SpinnerCSS.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/react/src/styled/SpinnerCSS.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -174,9 +187,11 @@
         <option value="$PROJECT_DIR$/class/DataBase/MySQL.php" />
         <option value="$PROJECT_DIR$/react/src/App.js" />
         <option value="$PROJECT_DIR$/react/src/comps/Profile.js" />
-        <option value="$PROJECT_DIR$/react/src/comps/FormCreator.js" />
         <option value="$PROJECT_DIR$/react/src/styled/formComponents/BoxCSS.js" />
+        <option value="$PROJECT_DIR$/react/src/styled/Spinner.js" />
+        <option value="$PROJECT_DIR$/react/src/comps/FormCreator.js" />
         <option value="$PROJECT_DIR$/react/src/comps/PollViewer.js" />
+        <option value="$PROJECT_DIR$/react/src/styled/SpinnerCSS.js" />
       </list>
     </option>
   </component>
@@ -293,14 +308,6 @@
             <path>
               <item name="Scholar" type="b2602c69:ProjectViewProjectNode" />
               <item name="Scholar" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="react" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="styled" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="formComponents" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Scholar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Scholar" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="router" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -324,6 +331,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\OSPanel\domains\Scholar\react\src\styled" />
       <recent name="C:\OSPanel\domains\Scholar\react\src\styled\formComponents" />
       <recent name="C:\OSPanel\domains\Scholar\react\src\comps" />
     </key>
@@ -360,12 +368,12 @@
       <workItem from="1524038211816" duration="609000" />
       <workItem from="1524469745655" duration="4789000" />
       <workItem from="1524487536038" duration="976000" />
-      <workItem from="1524488888954" duration="3795000" />
+      <workItem from="1524488888954" duration="4709000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38162000" />
+    <option name="totallyTimeSpent" value="39076000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -404,16 +412,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/react/src/comps/PollViewer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="59" column="23" lean-forward="false" selection-start-line="59" selection-start-column="23" selection-end-line="59" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public_html/css/reset.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -757,24 +755,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react/src/comps/Profile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="40" lean-forward="false" selection-start-line="1" selection-start-column="40" selection-end-line="1" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react/src/comps/FormCreator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="30" column="36" lean-forward="false" selection-start-line="30" selection-start-column="36" selection-end-line="30" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/react/src/comps/formComponents/TestForm.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="97">
@@ -799,12 +779,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react/src/comps/PollViewer.js">
+    <entry file="file://$PROJECT_DIR$/react/src/comps/FormCreator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="46" column="4" lean-forward="false" selection-start-line="46" selection-start-column="4" selection-end-line="76" selection-end-column="9" />
+        <state relative-caret-position="284">
+          <caret line="65" column="14" lean-forward="false" selection-start-line="65" selection-start-column="14" selection-end-line="65" selection-end-column="14" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react/src/comps/Profile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="40" lean-forward="false" selection-start-line="1" selection-start-column="40" selection-end-line="1" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react/src/comps/PollViewer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="590">
+          <caret line="40" column="22" lean-forward="false" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react/src/styled/SpinnerCSS.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
