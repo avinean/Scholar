@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import {RegFormTag, H2, Message, Input, Button, A} from 
-        '../styled/RegformCSS.js';
+import {RegFormTag} from '../styled/RegFormCSS.js';
+import Button from '../styled/ButtonCSS.js';
 
-class Faqform extends Component {
+class Profile extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -12,16 +11,19 @@ class Faqform extends Component {
       mess: ``
     }
   }
+
+  relocate = e => {
+    location.pathname = e;
+  };
       
   render() {
     return (
       <RegFormTag>
-    
-        <H2> Profile </H2>
-
+        <Button onClick={e => this.relocate('/former')}>Create</Button>
+        <Button onClick={e => this.relocate('/viewer')}>Show</Button>
       </RegFormTag>
     );
   }
 }
 
-export default Faqform;
+export default Profile;

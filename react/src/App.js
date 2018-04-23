@@ -10,7 +10,7 @@ import FormCreator from './comps/FormCreator.js';
 import PollViewer from './comps/PollViewer.js';
 import TestListViewer from './comps/TestListViewer.js';
 import Prenav from './comps/Prenav.js';
-import Profile from './comps/Prenav.js';
+import Profile from './comps/Profile.js';
 import Wrapper from './styled/WrapperCSS.js';
 
 class App extends Component {

@@ -11,23 +11,27 @@ class FromCreator extends Component {
 				{id:'a1',text:'',data:[{}],type:'radio'},
 			]
 		};
-		this.test = [];
+		this.test = [{id:'a1'}];
 	}
 
 	addFormField = e => {
-		let a = [...this.state.form];
-		a.push({id:Math.random(),text:'',data:[{}],type:e});
-		this.setState({form: a});
+		let form = this.test.map(e =>
+			({
+				data: e.data.data,
+				id: e.id,
+				text: e.data.text,
+				type: e.type
+			})
+		);
+		form.push({id:Math.random(),text:'',data:[{}],type:'radio'});
+		this.setState({form: form});
 	};
 
 	deleteFormField = e => {
-		let a = [...this.state.form].filter(el => el.id !== e);
-		if (!a.length) {
-			a.push({id:Math.random(),text:'',data:[{}],type:e});
-		}
-		else {
-			this.setState({form: a});
-		}
+		let test = [...this.test].filter(el => el.id !== e);
+		let form = [...this.state.form].filter(el => el.id !== e);
+		this.test = test;
+		this.setState({form: form});
 	};
 
 	callback = e => {
@@ -41,7 +45,7 @@ class FromCreator extends Component {
 		}
 	};
 
-	sendForm = e => {	
+	sendForm = e => {
 		let data = JSON.stringify(this.test);
 		let info = new URLSearchParams();
 		info.append('data', data);
