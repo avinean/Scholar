@@ -28,13 +28,20 @@ class FromCreator extends Component {
 	};
 
 	deleteFormField = e => {
-		let test = [...this.test].filter(el => el.id !== e);
-		let form = [...this.state.form].filter(el => el.id !== e);
-		this.test = test;
+		this.test = this.test.filter(el => el.id !== e);
+		let form = this.test.map(e =>
+			({
+				data: e.data.data,
+				id: e.id,
+				text: e.data.text,
+				type: e.type
+			})
+		);
 		this.setState({form: form});
 	};
 
 	callback = e => {
+
 		if (!this.test.length) this.test.push(e);
 		else {
 			let tempid = null;
