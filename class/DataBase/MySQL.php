@@ -4,18 +4,9 @@ namespace App\DataBase;
 
 use App\Core\Response;
 use App\Core\Request;
+use App\Core\Singleton;
 
-class MySQL {
-
-
-    private static $instance = null;
-
-    public static function c() {
-        if (!self::$instance) {
-            self::$instance = new self();
-        }
-        return self::$instance;
-    }
+class MySQL extends Singleton {
 
 	public function getMySQL($db) {
 

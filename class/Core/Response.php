@@ -12,34 +12,29 @@ class Response {
         print_r($this->response);
     }
 
-    public function fetchSingleRow() {
+    public function fetchAssoc() {
         if (gettype($this->response) === 'boolean') return $this->response;
         else return mysqli_fetch_assoc($this->response);
-        // first row assoc
     }
 
     public function fetchArray() {
         if (gettype($this->response) === 'boolean') return $this->response;
         else return mysqli_fetch_all($this->response);
-        // first row num
     }
 
     public function fetch() {
         if ($this->response === true) return true;
         else return mysqli_fetch_all($this->response, MYSQLI_ASSOC);
-        //assoc array
     }
 
     public function fetchFields() {
         if ($this->response === true) return true;
         else return mysqli_fetch_fields($this->response);
-        //тупо індексний масив
     }
 
     public function rowsNum() {
         if ($this->response === true) return true;
         else return $this->response->num_rows;
-        //тупо індексний масив
     }
 
 	public function lastConnErrNum() {echo mysqli_connect_errno();}

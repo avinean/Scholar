@@ -19,7 +19,7 @@ class Request {
 		$this->request = $temp;
 
 		$temp = (object)'';
-		foreach ($_SERVER as $key => $val) $temp->$key = (string) $val;
+		foreach ($_SERVER as $key => $val) $temp->$key =  $val;
 		$this->server = $temp;
 
 		$temp = (object)'';

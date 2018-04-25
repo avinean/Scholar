@@ -2,20 +2,14 @@
 
 namespace App\Core;
 
-class Model {
+use App\Core\Singleton;
 
-    private static $instance = null;
-
-    public static function c() {
-        if (!self::$instance) {
-            self::$instance = new self();
-        }
-        return self::$instance;
-    }
+class Model extends Singleton {
 
     function __construct() {
         $this->db = new \App\DataBase\MySQL;
         $this->req = new \App\Core\Request;
+		$this->home = '/';
     }
 
     public function json($arr = []) {

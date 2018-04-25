@@ -7,17 +7,18 @@ class TestForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			data: props.data,
+			data: props.data.data,
 			text: props.data.text
 		};
 	}
 
-	onInput = e => {		
+	onInput = e => {
 		Promise.resolve()
 		.then(() => {
 			this.setState({text: this.refs.area.value});
 		})
 		.then(() => {
+			console.log(this.state.data);
 			this.props.callback && this.props.callback({
 				data: this.state,
 				id: this.props.data.id,
@@ -38,6 +39,7 @@ class TestForm extends Component {
 			}
 		})
 		.then(() => {
+			console.log(this.state.data);
 			this.props.callback && this.props.callback({
 				data: this.state,
 				id: this.props.data.id,
@@ -57,21 +59,21 @@ class TestForm extends Component {
 							<i className="fas fa-ban"></i>
 						</span>}
 						<textarea 
-						ref="area" 
-						onInput={this.onInput} 
-						defaultValue={this.state.text}
+							ref="area"
+							onInput={this.onInput}
+							defaultValue={this.state.text}
 						></textarea>
 					</Area>;
 		let form = this.props.editable ?
 			<CheckboxGroup
 				callback={this.callback}
-				data={this.state.data.data}
+				data={this.state.data}
 				type={this.props.type}
 				editable={1}
 			/>:
 			<CheckboxGroup
 				callback={this.callback}
-				data={this.state.data.data}
+				data={this.state.data}
 				type={this.props.type}
 			/>;
 

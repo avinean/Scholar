@@ -11,10 +11,11 @@ class FromCreator extends Component {
 				{id:'a1',text:'',data:[{}],type:'radio'},
 			]
 		};
-		this.test = [{id:'a1'}];
+		this.test = [];
 	}
 
 	addFormField = e => {
+		if (this.test.length < this.state.form.length) return;
 		let form = this.test.map(e =>
 			({
 				data: e.data.data,
@@ -41,7 +42,6 @@ class FromCreator extends Component {
 	};
 
 	callback = e => {
-
 		if (!this.test.length) this.test.push(e);
 		else {
 			let tempid = null;
@@ -69,7 +69,7 @@ class FromCreator extends Component {
 			<TestForm 
 				key={e.id + Math.random(0,1)}
 				callback={this.callback} 
-				data={e} 
+				data={e}
 				type={e.type}
 				editable={1} 
 				onDelete={this.deleteFormField}

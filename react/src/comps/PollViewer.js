@@ -39,43 +39,43 @@ class PollViewer extends Component {
 
 	render() {
 		let form = [];
-		// if (!this.state) {
+		if (!this.state) {
 			return (
 				<div className='wrapper'>
-					<Spinner><span><i className="fas fa-spinner"></i></span></Spinner>
+					<Spinner><i className="fas fa-sync-alt"></i></Spinner>
 				</div>
 			);
-		// }
-		// else {
-		// 	if (!Object.keys(this.state).length) {
-		// 		return(
-		// 			<div className='wrapper'>
-		// 				<h1>No poll</h1>
-		// 			</div>
-		// 		);
-		// 	}
-		// 	else {
-		// 		for (let k in this.state) {
-		// 			form.push(
-		// 				<TestForm
-		// 				key={Math.random(0,1)**Math.random(0,1)}
-		// 				callback={this.callback}
-		// 				data={this.state[k].data}
-		// 				type={this.state[k].type}
-		// 			/>);
-		// 		}
-		//
-		// 		return(
-		// 			<div>
-		// 				<br />
-		// 				<h1>Ready forms</h1>
-		// 				{form.length ? form : ''}
-		// 				<br />
-		// 				<Button onClick={this.sendForm}>Send form</Button>
-		// 			</div>
-		// 		);
-		// 	}
-		// }
+		}
+		else {
+			if (!Object.keys(this.state).length) {
+				return(
+					<div className='wrapper'>
+						<h1>No poll</h1>
+					</div>
+				);
+			}
+			else {
+				for (let k in this.state) {
+					form.push(
+						<TestForm
+						key={Math.random(0,1)**Math.random(0,1)}
+						callback={this.callback}
+						data={this.state[k].data}
+						type={this.state[k].type}
+					/>);
+				}
+
+				return(
+					<div>
+						<br />
+						<h1>Ready forms</h1>
+						{form.length ? form : ''}
+						<br />
+						<Button onClick={this.sendForm}>Send form</Button>
+					</div>
+				);
+			}
+		}
 	}
 }
 

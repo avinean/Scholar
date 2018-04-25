@@ -2,6 +2,7 @@
 
 use \App\Core\Model;
 use \App\Core\Security;
+use \App\Model\User;
 
 function route($app, $arr = []) {
     $app->map('GET', '/', function() {

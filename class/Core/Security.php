@@ -2,22 +2,7 @@
 
 namespace App\Core;
 
-class Security {
-
-    private static $instance = null;
-
-    public static function c() {
-        if (!self::$instance) {
-            self::$instance = new self();
-        }
-        return self::$instance;
-    }
-
-    function __construct() {
-        $this->db = new \App\DataBase\MySQL;
-        $this->req = new \App\Core\Request;
-        $this->home = '/';
-    }
+class Security extends Model {
 
     public function json($arr = []) {
         return json_encode($arr);
@@ -67,7 +52,7 @@ class Security {
 
             $res = $this->db->query($query);
             $num = $res->rowsNum();
-            $rows = $res->fetchSingleRow();
+            $rows = $res->fetchAssoc();
 
             if (empty($num)) {
                 return 0;
@@ -91,7 +76,7 @@ class Security {
             SELECT password, email FROM `users`
             WHERE id = ".$this->db->quote($id)."LIMIT 1";
 
-            $res = $this->db->query($query)->fetchSingleRow();
+            $res = $this->db->query($query)->fetchAssoc();
 
             $true_hash = md5($id.$res['email'].$res['password'].$s->HTTP_USER_AGENT);
             $hash = $this->req->cookie->scholar_hash;
@@ -114,7 +99,7 @@ class Security {
             SELECT password, email FROM `users`
             WHERE id = ".$this->db->quote($id)."LIMIT 1";
 
-			$res = $this->db->query($query)->fetchSingleRow();
+			$res = $this->db->query($query)->fetchAssoc();
 
 			$true_hash = md5($id.$res['email'].$res['password'].$s->HTTP_USER_AGENT);
 			$hash = $this->req->cookie->scholar_hash;
