@@ -1,18 +1,14 @@
 <?php
 
+function route($path, $space) {
+	global $app;
+	$app->with($path, function () use ($app, $space) {
+		require_once ROOT.'/../router/panel/'.$space;
+	});
+}
 
-$app->with('/', function () use ($app) {
-	require_once ROOT.'/../router/panel/security_r.php';
-});
-
-$app->with('/viewer', function () use ($app) {
-	require_once ROOT.'/../router/panel/viewer_r.php';
-});
-
-$app->with('/former', function () use ($app) {
-	require_once ROOT.'/../router/panel/former_r.php';
-});
-
-$app->with('/profile', function () use ($app) {
-	require_once ROOT.'/../router/panel/profile_r.php';
-});
+route('/', 'security_r.php');
+route('/viewer', 'viewer_r.php');
+route('/former', 'former_r.php');
+route('/profile', 'profile_r.php');
+route('/poll', 'poll_r.php');
