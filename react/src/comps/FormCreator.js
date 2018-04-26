@@ -57,7 +57,7 @@ class FromCreator extends Component {
 		let info = new URLSearchParams();
 		info.append('data', data);
 
-		axios.post('/former/set_form', info)
+		axios.post('former/set_form', info)
 		.then(res => {
 			this.setState({testId: res.data});
 		});

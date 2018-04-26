@@ -11,7 +11,7 @@ class TestListViewer extends Component {
 	}
 
 	componentWillMount() {
-		axios('/viewer/get_test_list')
+		axios('viewer/get_test_list')
 		.then((res) => {
 			this.setState({ids: res.data});
 		});

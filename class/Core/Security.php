@@ -40,15 +40,12 @@ class Security extends Model {
         }
     }
 
-    public function authUser() {
-        $p = $this->req->post;
-        $s = $this->req->server;
-
-        if ( isset($p->email) && isset($p->password)) {
+    public function authUser($par = [], $userAgent) {
+        if ( isset($par['email']) && isset($par['password'])) {
             
             $query = "SELECT `id` FROM `users` 
-            WHERE email = ".$this->db->quote($p->email)."
-            AND password = ".$this->db->quote($p->password);
+            WHERE email = ".$this->db->quote($par['email'])."
+            AND password = ".$this->db->quote($par['password']);
 
             $res = $this->db->query($query);
             $num = $res->rowsNum();
@@ -59,27 +56,24 @@ class Security extends Model {
             }
             else {                
                 setcookie('scholar_id', $rows['id'], time()+60*60*24*365, 'path=/');   
-                setcookie('scholar_hash', md5($rows['id'].$p->email.$p->password.$s->HTTP_USER_AGENT),
+                setcookie('scholar_hash', md5($rows['id'].$par['email'].$par['password'].$userAgent),
                     time()+60*60*24*365, 'path=/');            
                 return 1;
             }
         }
     }    
 
-    public function checkAuth() {
-        if (isset($this->req->cookie->scholar_id) && isset($this->req->cookie->scholar_hash)) {
+    public function checkAuth($par = [], $userAgent) {
+        if (isset($par['scholar_id']) && isset($par['scholar_hash'])) {
 
-            $s = $this->req->server;
-            $id = $this->req->cookie->scholar_id;       
-            
             $query = "
             SELECT password, email FROM `users`
-            WHERE id = ".$this->db->quote($id)."LIMIT 1";
+            WHERE id = ".$this->db->quote($par['scholar_id'])."LIMIT 1";
 
             $res = $this->db->query($query)->fetchAssoc();
 
-            $true_hash = md5($id.$res['email'].$res['password'].$s->HTTP_USER_AGENT);
-            $hash = $this->req->cookie->scholar_hash;
+            $true_hash = md5($par['scholar_id'].$res['email'].$res['password'].$userAgent);
+            $hash = $par['scholar_hash'];
 
             if ($true_hash !== $hash) {
                 header('Location: /');
@@ -90,19 +84,16 @@ class Security extends Model {
         }
     }
 
-    public function checkCookie() {
-        if (isset($this->req->cookie->scholar_id) && isset($this->req->cookie->scholar_hash)) {
-			$s = $this->req->server;
-			$id = $this->req->cookie->scholar_id;
-
+    public function checkCookie($par = [], $userAgent) {
+		if (isset($par['scholar_id']) && isset($par['scholar_hash'])) {
 			$query = "
             SELECT password, email FROM `users`
-            WHERE id = ".$this->db->quote($id)."LIMIT 1";
+            WHERE id = ".$this->db->quote($par['scholar_id'])."LIMIT 1";
 
 			$res = $this->db->query($query)->fetchAssoc();
 
-			$true_hash = md5($id.$res['email'].$res['password'].$s->HTTP_USER_AGENT);
-			$hash = $this->req->cookie->scholar_hash;
+			$true_hash = md5($par['scholar_id'].$res['email'].$res['password'].$userAgent);
+			$hash = $par['scholar_hash'];
 
 			if ($true_hash === $hash) {
 				header('Location: /profile');

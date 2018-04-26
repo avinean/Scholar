@@ -45,7 +45,7 @@ class Autform extends Component {
       info.append('email', this.state.mail);
       info.append('password', this.state.pass);
 
-    axios.post(`/auth`, info)
+    axios.post(`auth`, info)
       .then(res => {
         if (res.data === 0) {
           _this.setState({mess: `Обліковий запис не знайдено`});
