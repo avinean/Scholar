@@ -13,7 +13,8 @@ class PollViewer extends Component {
 	}
 
 	componentWillMount() {
-		axios('/viewer/get_form')
+		let id = location.pathname.match(/\d+/)[0];
+		axios(`${id}/get_form`)
 		.then((res) => {
 			let arr = JSON.parse(res.data.data_form);
 			arr.forEach(e => e.data.data
