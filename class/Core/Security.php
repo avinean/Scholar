@@ -63,40 +63,28 @@ class Security extends Model {
         }
     }    
 
-    public function checkAuth($par = [], $userAgent) {
-        if (isset($par['scholar_id']) && isset($par['scholar_hash'])) {
-
-            $query = "
-            SELECT password, email FROM `users`
-            WHERE id = ".$this->db->quote($par['scholar_id'])."LIMIT 1";
-
-            $res = $this->db->query($query)->fetchAssoc();
-
-            $true_hash = md5($par['scholar_id'].$res['email'].$res['password'].$userAgent);
-            $hash = $par['scholar_hash'];
-
-            if ($true_hash !== $hash) {
-                header('Location: /');
-            }
-        }
-        else {
-            header('Location: /');
-        }
-    }
-
-    public function checkCookie($par = [], $userAgent) {
+    public function checkAuth($par = [], $userAgent, $uri) {
 		if (isset($par['scholar_id']) && isset($par['scholar_hash'])) {
 			$query = "
-            SELECT password, email FROM `users`
-            WHERE id = ".$this->db->quote($par['scholar_id'])."LIMIT 1";
+				SELECT password, email 
+				FROM `users`
+				WHERE id = ".$this->db->quote($par['scholar_id'])."
+				LIMIT 1";
 
 			$res = $this->db->query($query)->fetchAssoc();
 
 			$true_hash = md5($par['scholar_id'].$res['email'].$res['password'].$userAgent);
 			$hash = $par['scholar_hash'];
 
-			if ($true_hash === $hash) {
+			if ($true_hash === $hash && $uri === '/') {
 				header('Location: /profile');
+			}
+			if ($true_hash !== $hash && $uri !== '/') {
+				header('Location: /');
+			}
+		} else {
+			if ($uri !== '/') {
+				header('Location: /');
 			}
 		}
     }

@@ -4,11 +4,7 @@ namespace App\Model;
 
 use \App\Core\Security;
 
-$app->respond('GET', '', function($req, $res, $ser) {
-	$cookies = $req->cookies()->all();
-	Security::c()->checkCookie((array) $cookies, $req->userAgent());
-	require_once ROOT.'/app.php';
-});
+getLayout();
 
 $app->respond('POST', 'reg', function($req, $res, $ser) {
     Security::c()->regNewUser();
