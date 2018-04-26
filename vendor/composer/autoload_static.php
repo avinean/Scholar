@@ -4,9 +4,21 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitca6d8604942b399058afc28e5023ad70
+class ComposerStaticInit8680327f7664d951c3fb934d0b8a0bfa
 {
     public static $prefixLengthsPsr4 = array (
+        'W' => 
+        array (
+            'WhichBrowser\\' => 13,
+        ),
+        'P' => 
+        array (
+            'Psr\\Cache\\' => 10,
+        ),
+        'K' => 
+        array (
+            'Klein\\' => 6,
+        ),
         'A' => 
         array (
             'App\\' => 4,
@@ -14,17 +26,54 @@ class ComposerStaticInitca6d8604942b399058afc28e5023ad70
     );
 
     public static $prefixDirsPsr4 = array (
+        'WhichBrowser\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/whichbrowser/parser/src',
+            1 => __DIR__ . '/..' . '/whichbrowser/parser/tests/src',
+        ),
+        'Psr\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/cache/src',
+        ),
+        'Klein\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/klein/klein/src/Klein',
+        ),
         'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/class',
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'R' => 
+        array (
+            'Requests' => 
+            array (
+                0 => __DIR__ . '/..' . '/rmccue/requests/library',
+            ),
+        ),
+        'L' => 
+        array (
+            'Less' => 
+            array (
+                0 => __DIR__ . '/..' . '/oyejorge/less.php/lib',
+            ),
+        ),
+    );
+
+    public static $classMap = array (
+        'AltoRouter' => __DIR__ . '/..' . '/altorouter/altorouter/AltoRouter.php',
+        'lessc' => __DIR__ . '/..' . '/oyejorge/less.php/lessc.inc.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitca6d8604942b399058afc28e5023ad70::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitca6d8604942b399058afc28e5023ad70::$prefixDirsPsr4;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit8680327f7664d951c3fb934d0b8a0bfa::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit8680327f7664d951c3fb934d0b8a0bfa::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit8680327f7664d951c3fb934d0b8a0bfa::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit8680327f7664d951c3fb934d0b8a0bfa::$classMap;
 
         }, null, ClassLoader::class);
     }
