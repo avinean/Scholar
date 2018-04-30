@@ -18,7 +18,6 @@ class TestForm extends Component {
 			this.setState({text: this.refs.area.value});
 		})
 		.then(() => {
-			console.log(this.state.data);
 			this.props.callback && this.props.callback({
 				data: this.state,
 				id: this.props.data.id,
@@ -39,10 +38,9 @@ class TestForm extends Component {
 			}
 		})
 		.then(() => {
-			console.log(this.state.data);
 			this.props.callback && this.props.callback({
 				data: this.state,
-				id: this.props.data.id,
+				id: this.props.data.id || this.props.id,
 				type: this.props.type,
 				title: this.props.title
 			});

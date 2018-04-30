@@ -24,17 +24,22 @@ class PollViewer extends Component {
 	}
 
 	callback = e => {
-		this.test[e.id] =  e;
+		e.data.data.forEach(el => {
+			if (el.value) {
+				this.test['r' + e.id] = el.id;
+			}
+		});
 	};
 
-	sendForm = e => {	
+	sendForm = e => {
 		let data = JSON.stringify(this.test);
+		let idp = location.pathname.match(/\d+/)[0];
 		let info = new URLSearchParams();
 		info.append('data', data);
-
-		axios.post('/former/set_form', info)
+		info.append('idp', idp);
+		axios.post('/poll/set_form_result', info)
 		.then(res => {
-			// console.log(JSON.parse(res.data.data_form));
+			console.log(res.data);
 		});
 	};
 
@@ -59,11 +64,12 @@ class PollViewer extends Component {
 				for (let k in this.state) {
 					form.push(
 						<TestForm
-						key={Math.random(0,1)**Math.random(0,1)}
-						callback={this.callback}
-						data={this.state[k].data}
-						type={this.state[k].type}
-					/>);
+							key={Math.random(0,1)**Math.random(0,1)}
+							callback={this.callback}
+							data={this.state[k].data}
+							type={this.state[k].type}
+							id={this.state[k].id}
+						/>);
 				}
 
 				return(

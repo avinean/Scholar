@@ -54,10 +54,10 @@ class FromCreator extends Component {
 
 	sendForm = e => {
 		let data = JSON.stringify(this.test);
+		let ids = JSON.stringify(this.test.map(e => e.id));
 		let info = new URLSearchParams();
 		info.append('data', data);
-		info.append('cnt', this.test.length);
-
+		info.append('ids', ids);
 		axios.post('former/set_form', info)
 		.then(res => {
 			this.setState({testId: res.data});
