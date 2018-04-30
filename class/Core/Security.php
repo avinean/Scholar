@@ -11,7 +11,7 @@ class Security extends Model {
     public function regNewUser() {
         $p = $this->req->post;
 
-        $query = "SELECT * FROM users
+        $query = "SELECT * FROM scholar.users
         WHERE email = ".$this->db->quote($p->email);
 
         $rows = $this->db->query($query)->rowsNum();
@@ -24,7 +24,7 @@ class Security extends Model {
         }
         else {
             $query = "
-            INSERT INTO users
+            INSERT INTO scholar.users
             (`first_name`, `last_name`, `email`, `password`, `role`, `school`)
             VALUES ("
             .$this->db->quote($p->first_name).","
@@ -43,7 +43,7 @@ class Security extends Model {
     public function authUser($par = [], $userAgent) {
         if ( isset($par['email']) && isset($par['password'])) {
             
-            $query = "SELECT `id` FROM `users` 
+            $query = "SELECT `id` FROM scholar.`users` 
             WHERE email = ".$this->db->quote($par['email'])."
             AND password = ".$this->db->quote($par['password']);
 
@@ -67,7 +67,7 @@ class Security extends Model {
 		if (isset($par['scholar_id']) && isset($par['scholar_hash'])) {
 			$query = "
 				SELECT password, email 
-				FROM `users`
+				FROM scholar.`users`
 				WHERE id = ".$this->db->quote($par['scholar_id'])."
 				LIMIT 1";
 

@@ -15,13 +15,13 @@ class MySQL extends Singleton {
             $HOST = "localhost";
             $USER = "root";
             $PASS = "";
-            $DB = "id3784881_scholar";
+            $DB = "";
             break;
 			case 'prod':
 			$HOST = "localhost";
 			$USER = "id3784881_avinean";
 			$PASS = "Coba1953";
-			$DB = "id3784881_scholar";
+			$DB = "";
 			break;
             default:
             break;

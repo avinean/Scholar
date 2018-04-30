@@ -6,7 +6,7 @@ use App\Core\Model;
 class Viewer extends Model {
 
 	public function getTestList($user_id) {
-		$res = $this->db->query('SELECT id FROM tests WHERE id_auth='.intval($user_id))->fetchArray();
+		$res = $this->db->query('SELECT id FROM scholar.tests WHERE id_auth='.intval($user_id))->fetchArray();
 		$ids = [];
 		foreach ($res as $val) {
 			$ids[] = $val[0];
@@ -15,7 +15,7 @@ class Viewer extends Model {
     }
 
 	public function getReadyTest($test_id) {
-		$res = $this->db->query('SELECT * FROM tests WHERE id='.$test_id)->fetchAssoc();
+		$res = $this->db->query('SELECT * FROM scholar.tests WHERE id='.$test_id)->fetchAssoc();
 		return json_encode($res);
 	}
 }

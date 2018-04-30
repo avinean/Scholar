@@ -52,5 +52,5 @@ class Response {
 	public function lastQueryInfo() {echo mysqli_info($this->conn);}
 	public function info() {$this->lastQueryInfo();}
 
-	public function ID() {echo mysqli_insert_id($this->conn);}
+	public function ID() {return mysqli_insert_id($this->conn);}
 }
