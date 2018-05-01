@@ -5,8 +5,9 @@ class CheckboxGroup extends Component {
 
 	constructor(props) {
 		super(props);
+		this.keys = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "a1", "b1", "c1", "d1", "e1", "f1", "g1", "h1", "i1", "j1", "k1", "l1", "m1", "n1", "o1", "p1", "q1", "r1", "s1", "t1", "u1", "v1", "w1", "x1", "y1", "z1"];
 		if (!props.data[0].id) {
-			props.data[0] = {id: Math.random(0, 1) * Math.random(0, 1)};
+			props.data[0] = {id: this.keys.shift()};
 		}
 		this.state = {
 			checkedId: null,
@@ -70,7 +71,7 @@ class CheckboxGroup extends Component {
 		let inputs = [];
 		let temp = [...this.state.data];
 		Promise.resolve()
-		.then(() => temp.push({id: Math.random(0,1)*Math.random(0,1)}))
+		.then(() => temp.push({id: this.keys.shift()}))
 		.then(() => this.setState({data: temp}))
 		.then(() => {
 			for (let k in this.refs) {
@@ -90,7 +91,7 @@ class CheckboxGroup extends Component {
 		Promise.resolve()
 		.then(() => {
 			temp = temp.filter(el => e.props.id !== el.id);
-			if (!temp.length) temp.push({id: Math.random(0, 1) * Math.random(0, 1)});
+			if (!temp.length) temp.push({id: this.keys.shift()});
 		})
 		.then(() => this.setState({
 			checkedId: this.state.checkedId,

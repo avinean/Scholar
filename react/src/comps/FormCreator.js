@@ -6,9 +6,10 @@ import Button from '../styled/ButtonCSS.js';
 class FromCreator extends Component {
 	constructor() {
 		super();
+		this.keys = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "a1", "b1", "c1", "d1", "e1", "f1", "g1", "h1", "i1", "j1", "k1", "l1", "m1", "n1", "o1", "p1", "q1", "r1", "s1", "t1", "u1", "v1", "w1", "x1", "y1", "z1"];
 		this.state = {
 			form: [
-				{id:'a1',text:'',data:[{}],type:'radio'},
+				{id: this.keys.shift(),text:'',data:[{}],type:'radio'},
 			]
 		};
 		this.test = [];
@@ -24,7 +25,7 @@ class FromCreator extends Component {
 				type: e.type
 			})
 		);
-		form.push({id:Math.random(),text:'',data:[{}],type:'radio'});
+		form.push({id: this.keys.shift(),text:'',data:[{}],type:'radio'});
 		this.setState({form: form});
 	};
 

@@ -10,11 +10,11 @@ class PollViewer extends Component {
 	constructor() {
 		super();
 		this.test = {};
+		this.id = location.pathname.match(/\d+/)[0]
 	}
 
 	componentWillMount() {
-		let id = location.pathname.match(/\d+/)[0];
-		axios(`${id}/get_form`)
+		axios(`${this.id}/get_form`)
 		.then((res) => {
 			let arr = JSON.parse(res.data.data_form);
 			arr.forEach(e => e.data.data
@@ -33,11 +33,10 @@ class PollViewer extends Component {
 
 	sendForm = e => {
 		let data = JSON.stringify(this.test);
-		let idp = location.pathname.match(/\d+/)[0];
 		let info = new URLSearchParams();
 		info.append('data', data);
-		info.append('idp', idp);
-		axios.post('/poll/set_form_result', info)
+		info.append('idp', this.id);
+		axios.post(`${this.id}/set_form_result`, info)
 		.then(res => {
 			console.log(res.data);
 		});
