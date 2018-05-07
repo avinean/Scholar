@@ -5,7 +5,7 @@ use App\Core\Model;
 
 class Former extends Model {
 
-    public function setTest($data, $cnt, $id ) {
+    public function setTest($data, $ids, $id ) {
         $query = "
             INSERT INTO scholar.tests (`data_form`, `id_auth`) 
             VALUES (".$this->db->quote($data).", ".intval($id).")
@@ -17,8 +17,10 @@ class Former extends Model {
 
 			$results = [];
 
-			for ($i = 0; $i < $cnt; $i++) {
-				$results[] = '`r' . $i . '` VARCHAR(1) NOT NULL';
+			$ids = json_decode($ids);
+
+			foreach ($ids as $val) {
+				$results[] = '`r' . $this->db->escape($val) . '` VARCHAR(1) NOT NULL';
 			}
 
 			$tableQuery = '

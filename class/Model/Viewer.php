@@ -13,9 +13,4 @@ class Viewer extends Model {
 		}
         return json_encode($ids);
     }
-
-	public function getReadyTest($test_id) {
-		$res = $this->db->query('SELECT * FROM scholar.tests WHERE id='.$test_id)->fetchAssoc();
-		return json_encode($res);
-	}
 }
