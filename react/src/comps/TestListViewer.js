@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import {post, get} from '../util/Axios';
 
 
 
@@ -11,7 +11,7 @@ class TestListViewer extends Component {
 	}
 
 	componentWillMount() {
-		axios('viewer/get_test_list')
+		get('viewer/get_test_list')
 		.then((res) => {
 			this.setState({ids: res.data});
 		});
